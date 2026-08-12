@@ -13,7 +13,7 @@ services.html            All four tiers, priced
 insurance-recovery.html  Tier 3, standalone (highest-intent page)
 about.html               Jesye Franklin  ← has open placeholders, see below
 contact.html             Call, email, service area
-brand.html               Logo concepts + brand sheet (internal, noindex, not in nav)
+brand.html               Logo concepts + brand sheet (noindex; footer-linked, not in nav)
 favicon.svg
 assets/css/site.css      The whole design system, one file
 assets/js/site.js        Mobile menu, header state, scroll reveals
