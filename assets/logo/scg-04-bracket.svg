@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 150" width="300" height="150" role="img" aria-label="Stringfellow Construction Group">
+  <title>SCG — Concept 04, Bracket</title>
+  <g transform="translate(40 27)" fill="none" stroke="#EDEAE4" stroke-width="14" stroke-linecap="butt" stroke-linejoin="miter">
+    <path d="M58 10 L22 10 L10 22 L10 32 L22 44 L46 44 L58 56 L58 74 L46 86 L10 86"/>
+    <path d="M134 10 L98 10 L86 22 L86 74 L98 86 L134 86"/>
+    <path d="M210 10 L174 10 L162 22 L162 74 L174 86 L210 86 L210 52 L190 52"/>
+  </g>
+  <g fill="none" stroke="#FF5A14" stroke-width="6" stroke-linecap="butt">
+    <path d="M16 42 V16 H42"/>
+    <path d="M258 16 H284 V42"/>
+    <path d="M284 108 V134 H258"/>
+    <path d="M42 134 H16 V108"/>
+  </g>
+</svg>
