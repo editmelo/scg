@@ -65,15 +65,19 @@ it is Jesye's call.
 
 ## Deploying
 
-**GitHub Pages:** Settings → Pages → deploy from `main`, folder `/ (root)`. The site
-is already laid out for it — `index.html` is at the top level.
+**Vercel — this is the live setup.** The repo is connected to a Vercel project serving
+`scg.revieweditmelo.com`. Pushing to `main` deploys. No build command, no output
+directory.
 
-**Netlify / Vercel:** connect the repo, or drag this folder onto the dashboard. No
-build command, no output directory.
+`vercel.json` turns on `cleanUrls`, so pages are served without the `.html` —
+`/services`, not `/services.html` — and any old `.html` URL 308-redirects to the clean
+one. Internal links are written root-relative to match (`href="/services"`).
 
-**Traditional host (cPanel, GoDaddy, current provider):** upload everything in this
-repository to `public_html/`. Keep the folder structure — `assets/` must stay next
-to the HTML files.
+**Moving to another host:** the clean URLs are the one thing that won't follow you.
+Netlify and Cloudflare Pages strip `.html` by default, so those work as-is. GitHub
+Pages and traditional Apache hosts do not — on those you'd either restore the `.html`
+in every internal link, or restructure each page into its own folder
+(`services/index.html`) and link to `/services/` with the trailing slash.
 
 **Custom domain:** point `stringfellowconstructiongroupllc.com` at the new host.
 The old site should come down at the same time; its "quality work at a price you
@@ -84,6 +88,11 @@ can afford" positioning directly contradicts the new one.
 ## Editing
 
 Everything is hand-editable HTML. A few things worth knowing:
+
+**Previewing locally** needs a server that understands clean URLs — `npx vercel dev`
+is the closest match to production. A plain `python3 -m http.server` will serve the
+pages but every nav link 404s, because it won't map `/services` to `services.html`.
+Opening the files directly from Finder has the same problem.
 
 **Prices** appear in more than one place. Tier 1's `$227` is in `index.html`
 (hero button, journey, tier row, CTA), `services.html`, and `contact.html`. Search
