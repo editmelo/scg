@@ -18,6 +18,7 @@ business/index.html      BUSINESS · landing page                 /business
 business/services.html   BUSINESS · four tiers                   /business/services
 about.html               Jesye Franklin  ← open placeholders     /about
 contact.html             Call, email, service area               /contact
+assessment.html          Client Fit & Engagement Assessment      /assessment
 brand.html               Logo concepts (noindex, footer-linked)  /brand
 favicon.svg
 vercel.json              cleanUrls — see Deploying
@@ -33,6 +34,52 @@ title-block cell on **every** page so the numbering stays honest.
 
 **Asset paths are root-relative** (`/assets/...`). They have to be — `/business/services`
 sits one level deep, and relative paths would resolve against `/business/`.
+
+---
+
+## The assessment
+
+`assessment.html` is Jesye's Client Fit & Engagement Assessment: eight sections, about
+six minutes, branching between the construction and business paths, scoring to a tier
+or to a "not a fit" outcome with hard disqualifiers.
+
+**It is deliberately self-contained.** Its CSS and JS are inline and it does *not* load
+`site.css`. That's not an oversight — it uses the same brand tokens, but its class names
+(`.nav`, `.btn`, `.sheet`, `.wrap`, `.foot`) collide head-on with the site's. Loading
+both would break one or the other. Edit its styles inside the file.
+
+What was changed from the file Jesye supplied: the placeholder SCG logo swapped for the
+real chamfered mark, a site nav row added under the masthead, the off-site absolute
+links pointed back on-domain, a favicon added, and the print rule fixed so the mark
+doesn't black out.
+
+**Delivery.** Results can be printed, copied, or emailed. Two constants near the top of
+its script control this:
+
+```
+const SUBMIT_ENDPOINT = "";                    // Formspree/Basin/etc. POST url
+const CONTACT_EMAIL   = "frjesye1@gmail.com";  // used by the email button
+```
+
+Leave `SUBMIT_ENDPOINT` empty and completed assessments only reach Jesye if the visitor
+clicks the email button, which opens their mail client. **Paste a form endpoint in and
+they arrive automatically** — worth doing before this gets real traffic, because the
+mailto route loses anyone without a configured desktop mail client.
+
+### The popup
+
+`site.js` injects a prompt three seconds after load. It is:
+
+- **remembered** — dismissing or clicking through writes `scg.assessment.prompt.v1` to
+  localStorage, so a visitor is asked once, not on every page
+- **suppressed** on `/assessment` and `/brand`
+- keyboard-operable: Escape closes, focus is trapped while open and returned on close
+- silent under `prefers-reduced-motion` and absent entirely without JavaScript
+
+Tuning lives in three constants at the top of that block — `AP_DELAY`, `AP_SKIP`,
+`AP_KEY`. Bumping `AP_KEY` to `v2` re-prompts everyone who already dismissed it.
+
+To see it again while working: `localStorage.removeItem('scg.assessment.prompt.v1')`.
 
 Only external request is Google Fonts (Archivo + JetBrains Mono).
 
@@ -81,7 +128,24 @@ high-intent search term and it's already indexed.
 `services.html` shows the $49 / $99 / $199 tiers marked "In development." If Jesye
 would rather not advertise something that isn't open yet, delete that `<section>`.
 
-**6. Confirm publishing real prices.**
+**6. Wire up assessment delivery.**
+Set `SUBMIT_ENDPOINT` in `assessment.html` so completed assessments land in an inbox
+instead of depending on the visitor's mail client. See "The assessment" above.
+
+**7. Reconcile the tier names and prices between the assessment and the site.**
+They don't currently match, and a visitor can see both in one session:
+
+| | Assessment | Site |
+|---|---|---|
+| Tier 02 | PLAN — "From $997" | Construction "From $997"; **Business "Scoped after the consultation"** |
+| Tier 03 | IMPLEMENT / RECOVER — "Quoted per engagement" | Construction **"From $497"** |
+| Tier 04 | PARTNER / SCALE — "From $10,000" | Construction "Build"; Business "Scale" |
+
+The assessment uses one unified ladder across both tracks; the site uses track-specific
+names. Both are defensible on their own, but the price lines contradict each other.
+Jesye's call which is right — then make the other match.
+
+**8. Confirm publishing real prices.**
 Every price from the tier documents is on the site. That was a deliberate
 positioning choice — it's the main thing that separates this from competitors — but
 it is Jesye's call.

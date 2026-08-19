@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Client Fit &amp; Engagement Assessment — Stringfellow Consulting Group</title>
+<meta name="description" content="Stringfellow Construction Group — Client Fit &amp; Engagement Assessment. Determine whether Stringfellow is the right resource and what level of involvement your situation requires.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   SCG BRAND TOKENS  —  scg.revieweditmelo.com/brand
+   Ink #0B0B0C · Ink Raised #141417 · Line #2B2B31
+   Bone #E8E4DA · Bone Line #C6C0B2 · Amber #FF5A14
+   Archivo (display/body) · JetBrains Mono (data & labels)
+   NO border-radius. NO shadows, bevels, gradients.
+   Amber is rationed — never more than ~5% of a layout.
+   ============================================================ */
+:root{
+  --ink:#0B0B0C;
+  --ink-raised:#141417;
+  --line:#2B2B31;
+  --bone:#E8E4DA;
+  --bone-line:#C6C0B2;
+  --bone-dim:#8A8477;
+  --amber:#FF5A14;
+  --amber-dim:#C7440F;
+
+  --f-display:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-mono:'JetBrains Mono','SFMono-Regular',Menlo,Consolas,monospace;
+
+  --gut:clamp(20px,4vw,56px);
+  --sheet:960px;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--bone);
+  font-family:var(--f-display);
+  font-variation-settings:'wdth' 100,'wght' 400;
+  font-size:16px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+/* ---------- type primitives ---------- */
+.display{
+  font-family:var(--f-display);
+  font-variation-settings:'wdth' 116,'wght' 800;
+  text-transform:uppercase;
+  letter-spacing:-0.022em;
+  line-height:0.95;
+  margin:0;
+}
+.sect-h{
+  font-family:var(--f-display);
+  font-variation-settings:'wdth' 112,'wght' 750;
+  text-transform:uppercase;
+  letter-spacing:-0.015em;
+  line-height:1.05;
+  margin:0;
+}
+.mono{
+  font-family:var(--f-mono);
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:0.16em;
+  font-variant-numeric:tabular-nums;
+  font-size:11px;
+}
+.amber{color:var(--amber);}
+.dim{color:var(--bone-dim);}
+
+/* ---------- chamfer: the identity motif (45° cut corners) ---------- */
+.chamfer-tr{clip-path:polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%);}
+.chamfer-br{clip-path:polygon(0 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%);}
+.chamfer-both{clip-path:polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 22px 100%, 0 calc(100% - 22px));}
+.chamfer-btn{clip-path:polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));}
+
+/* ============================================================
+   MASTHEAD
+   ============================================================ */
+.mast{
+  border-bottom:1px solid var(--line);
+  background:var(--ink);
+}
+.mast-in{
+  max-width:var(--sheet);
+  margin:0 auto;
+  padding:22px var(--gut) 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.logo{display:flex;align-items:center;gap:13px;text-decoration:none;color:inherit;}
+.logo svg{display:block;flex:none;}
+.logo-txt{display:flex;flex-direction:column;gap:3px;}
+.logo-name{
+  font-family:var(--f-display);
+  font-variation-settings:'wdth' 116,'wght' 800;
+  text-transform:uppercase;letter-spacing:-0.02em;
+  font-size:19px;line-height:1;
+}
+.logo-sub{font-family:var(--f-mono);font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bone-dim);}
+.mast-meta{text-align:right;display:flex;flex-direction:column;gap:3px;}
+.mast-meta a{color:var(--bone);text-decoration:none;}
+.mast-meta a:hover{color:var(--amber);}
+.mast-nav{border-top:1px solid var(--line);background:var(--ink);}
+.mast-nav-in{
+  max-width:var(--sheet);
+  margin:0 auto;
+  padding:0 var(--gut);
+  display:flex;
+  flex-wrap:wrap;
+  gap:22px;
+}
+.mast-nav a{
+  font-family:var(--f-mono);
+  font-size:11px;
+  letter-spacing:0.13em;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:#9A9490;
+  padding:11px 0;
+  transition:color .2s;
+}
+.mast-nav a:hover{color:var(--amber);}
+
+/* ============================================================
+   PROGRESS RAIL (sticky)
+   ============================================================ */
+.rail{
+  position:sticky;top:0;z-index:60;
+  background:var(--ink-raised);
+  border-bottom:1px solid var(--line);
+}
+.rail-in{
+  max-width:var(--sheet);margin:0 auto;
+  padding:10px var(--gut) 0;
+}
+.rail-row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;}
+.rail-track{height:3px;background:var(--line);margin-top:9px;position:relative;}
+.rail-fill{height:3px;background:var(--amber);width:0%;transition:width .35s cubic-bezier(.2,.7,.2,1);}
+.rail-ticks{display:flex;gap:0;margin-top:0;}
+.rail-tick{flex:1;height:8px;border-right:1px solid var(--line);}
+.rail-tick:last-child{border-right:0;}
+
+/* ============================================================
+   SHEET  (the document surface — Bone)
+   ============================================================ */
+.wrap{max-width:var(--sheet);margin:0 auto;padding:0 var(--gut) 90px;}
+.sheet{
+  background:var(--bone);
+  color:var(--ink);
+  padding:clamp(26px,5vw,60px);
+  border:1px solid var(--bone-line);
+  margin-top:-1px;
+}
+.sheet .dim{color:#6E6858;}
+
+/* ---------- intro ---------- */
+.intro-kicker{display:flex;align-items:center;gap:12px;margin-bottom:22px;}
+.intro-kicker .bar{width:34px;height:3px;background:var(--amber);flex:none;}
+h1.display{font-size:clamp(30px,6.4vw,58px);margin-bottom:20px;}
+.lead{
+  font-size:clamp(17px,2.2vw,21px);
+  line-height:1.45;
+  font-variation-settings:'wdth' 104,'wght' 600;
+  margin:0 0 22px;
+  max-width:44ch;
+}
+.intro p{margin:0 0 14px;max-width:66ch;color:#2A2A2E;}
+.rule{height:1px;background:var(--bone-line);border:0;margin:32px 0;}
+.rule-heavy{height:2px;background:var(--ink);border:0;margin:34px 0 30px;}
+
+/* drafting tick rule */
+.tickrule{display:flex;align-items:center;gap:0;margin:30px 0;}
+.tickrule .tk{width:1px;height:9px;background:var(--bone-line);}
+.tickrule .ln{flex:1;height:1px;background:var(--bone-line);}
+
+/* ---------- section head ---------- */
+.sec{display:none;}
+.sec.on{display:block;animation:fade .28s ease both;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+.sec-head{margin-bottom:30px;}
+.sec-tag{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.sec-tag .n{
+  font-family:var(--f-mono);font-size:11px;letter-spacing:0.16em;
+  background:var(--ink);color:var(--bone);padding:4px 9px;
+}
+.sec-tag .l{flex:1;height:1px;background:var(--bone-line);}
+h2.sect-h{font-size:clamp(24px,4.6vw,40px);}
+.sec-blurb{margin:10px 0 0;color:#5C5749;max-width:60ch;font-size:15px;}
+
+/* ---------- question ---------- */
+.q{margin:0 0 38px;}
+.q:last-child{margin-bottom:8px;}
+.q-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:6px;}
+.q-num{
+  font-family:var(--f-mono);font-size:11px;letter-spacing:0.12em;
+  color:var(--amber);padding-top:5px;flex:none;min-width:26px;
+}
+h3.sect-h{font-size:clamp(15px,2.3vw,19px);letter-spacing:-0.008em;}
+.q-sub{margin:2px 0 0 38px;font-size:14px;color:#5C5749;max-width:62ch;}
+.q-sub.strong{color:#2A2A2E;}
+.opts{margin:14px 0 0 38px;border-top:1px solid var(--bone-line);}
+@media(max-width:560px){.q-sub,.opts{margin-left:0;}}
+
+/* ---------- option row ---------- */
+.opt{
+  display:flex;gap:13px;align-items:flex-start;
+  padding:11px 12px 11px 10px;
+  border-bottom:1px solid var(--bone-line);
+  cursor:pointer;
+  transition:background .12s linear;
+  position:relative;
+}
+.opt:hover{background:#DFDACE;}
+.opt input{position:absolute;opacity:0;width:0;height:0;}
+.box{
+  width:17px;height:17px;flex:none;margin-top:3px;
+  border:1.5px solid var(--ink);background:transparent;
+  position:relative;transition:background .12s linear,border-color .12s linear;
+  clip-path:polygon(0 0, calc(100% - 5px) 0, 100% 5px, 100% 100%, 0 100%);
+}
+.opt .lab{font-size:15px;line-height:1.45;color:#1A1A1D;}
+.opt .lab b{font-variation-settings:'wdth' 104,'wght' 700;}
+.opt input:checked ~ .box{background:var(--amber);border-color:var(--amber);}
+.opt input:checked ~ .box::after{
+  content:"";position:absolute;left:4.5px;top:1px;
+  width:5px;height:10px;border:solid var(--ink);
+  border-width:0 2.2px 2.2px 0;transform:rotate(43deg);
+}
+.opt input:checked ~ .lab{font-variation-settings:'wdth' 102,'wght' 600;}
+.opt:has(input:checked){background:#DFDACE;}
+.opt input:focus-visible ~ .box{outline:2px solid var(--amber);outline-offset:2px;}
+
+/* ---------- callout ---------- */
+.callout{
+  margin:20px 0 0 38px;
+  background:var(--ink);color:var(--bone);
+  padding:18px 20px;
+  border-left:3px solid var(--amber);
+}
+@media(max-width:560px){.callout{margin-left:0;}}
+.callout .c-cond{font-family:var(--f-mono);font-size:10px;letter-spacing:0.16em;color:var(--amber);margin-bottom:8px;}
+.callout p{margin:0 0 4px;font-size:15px;line-height:1.5;}
+.callout p:last-child{margin-bottom:0;font-variation-settings:'wdth' 104,'wght' 700;}
+
+/* ---------- text inputs ---------- */
+.ta,.inp{
+  width:100%;font-family:var(--f-display);font-size:15px;line-height:1.6;
+  color:var(--ink);background:#F1EEE6;
+  border:1px solid var(--bone-line);border-bottom:2px solid var(--ink);
+  padding:11px 13px;outline:none;
+}
+.ta:focus,.inp:focus{border-color:var(--amber);border-bottom-color:var(--amber);background:#FFF;}
+.ta{resize:vertical;margin-left:38px;width:calc(100% - 38px);}
+@media(max-width:560px){.ta{margin-left:0;width:100%;}}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px 20px;margin-left:38px;}
+@media(max-width:700px){.grid{grid-template-columns:1fr;margin-left:0;}}
+.fld{display:flex;flex-direction:column;gap:6px;}
+.fld.full{grid-column:1/-1;}
+.fld label{font-family:var(--f-mono);font-size:10px;letter-spacing:0.16em;color:#5C5749;}
+.fld label .req{color:var(--amber);}
+
+/* ---------- nav ---------- */
+.nav{
+  display:flex;justify-content:space-between;align-items:center;gap:14px;
+  margin-top:38px;padding-top:24px;border-top:2px solid var(--ink);
+  flex-wrap:wrap;
+}
+.btn{
+  font-family:var(--f-mono);font-size:11px;letter-spacing:0.16em;text-transform:uppercase;
+  padding:14px 24px;border:0;cursor:pointer;
+  background:var(--ink);color:var(--bone);
+  transition:background .14s linear,color .14s linear;
+}
+.btn:hover{background:var(--amber);color:var(--ink);}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink);}
+.btn.ghost:hover{background:var(--ink);color:var(--bone);}
+.btn.amber{background:var(--amber);color:var(--ink);}
+.btn.amber:hover{background:var(--ink);color:var(--bone);}
+.btn:disabled{opacity:.28;cursor:not-allowed;}
+.btn:focus-visible{outline:2px solid var(--amber);outline-offset:3px;}
+.nav-note{font-family:var(--f-mono);font-size:10px;letter-spacing:0.14em;color:#6E6858;}
+
+/* ---------- validation ---------- */
+.err{
+  margin:14px 0 0 38px;background:var(--amber);color:var(--ink);
+  padding:9px 13px;font-family:var(--f-mono);font-size:10px;letter-spacing:0.14em;
+  display:none;
+}
+.err.on{display:block;}
+@media(max-width:560px){.err{margin-left:0;}}
+
+/* ============================================================
+   RESULT
+   ============================================================ */
+.result{display:none;}
+.result.on{display:block;}
+.res-band{background:var(--ink);color:var(--bone);padding:clamp(26px,5vw,52px);border:1px solid var(--line);}
+.res-kick{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.res-kick .bar{width:34px;height:3px;background:var(--amber);}
+.tier-code{font-family:var(--f-mono);font-size:12px;letter-spacing:0.2em;color:var(--amber);margin-bottom:10px;}
+.tier-name{font-size:clamp(30px,6.6vw,60px);}
+.tier-strap{
+  font-family:var(--f-display);font-variation-settings:'wdth' 108,'wght' 700;
+  text-transform:uppercase;letter-spacing:0.01em;font-size:clamp(13px,2vw,16px);
+  margin:14px 0 0;color:var(--bone);
+}
+.tier-meter{display:flex;gap:5px;margin:26px 0 24px;}
+.tm{flex:1;height:7px;background:var(--line);}
+.tm.on{background:var(--amber);}
+.tm-labels{display:flex;gap:5px;margin-top:-16px;margin-bottom:26px;}
+.tm-labels span{flex:1;font-family:var(--f-mono);font-size:9px;letter-spacing:0.12em;color:#6a6a72;}
+.tm-labels span.on{color:var(--bone);}
+.res-cols{display:grid;grid-template-columns:1fr 1fr;gap:34px;margin-top:8px;}
+@media(max-width:700px){.res-cols{grid-template-columns:1fr;gap:26px;}}
+.res-h{font-family:var(--f-mono);font-size:10px;letter-spacing:0.16em;color:var(--amber);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--line);}
+.res-list{list-style:none;margin:0;padding:0;}
+.res-list li{padding:6px 0 6px 18px;position:relative;font-size:15px;line-height:1.45;border-bottom:1px solid var(--line);}
+.res-list li::before{content:"";position:absolute;left:0;top:14px;width:7px;height:1px;background:var(--amber);}
+.res-close{margin:26px 0 0;font-size:clamp(15px,2.1vw,18px);line-height:1.45;font-variation-settings:'wdth' 104,'wght' 600;max-width:52ch;}
+.res-anchor{font-family:var(--f-mono);font-size:11px;letter-spacing:0.14em;color:#8f8f98;margin-top:16px;}
+.res-anchor b{color:var(--bone);font-weight:500;}
+.flagbox{
+  margin-top:26px;border-left:3px solid var(--amber);background:var(--ink-raised);
+  padding:16px 18px;
+}
+.flagbox .fh{font-family:var(--f-mono);font-size:10px;letter-spacing:0.16em;color:var(--amber);margin-bottom:8px;}
+.flagbox p{margin:0;font-size:14.5px;line-height:1.5;color:#C9C4B8;}
+
+/* not-fit panel */
+.notfit .res-band{background:var(--bone);color:var(--ink);border-color:var(--bone-line);}
+.notfit .res-list li{border-bottom-color:var(--bone-line);}
+.notfit .res-h{border-bottom-color:var(--bone-line);}
+.notfit .flagbox{background:#DFDACE;}
+.notfit .flagbox p{color:#2A2A2E;}
+.notfit .res-anchor{color:#6E6858;}
+.notfit .res-anchor b{color:var(--ink);}
+
+/* summary sheet */
+.summary{background:var(--bone);color:var(--ink);border:1px solid var(--bone-line);padding:clamp(24px,4vw,44px);margin-top:26px;}
+.sum-h{display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:22px;flex-wrap:wrap;}
+.sum-q{margin:0 0 16px;padding-bottom:14px;border-bottom:1px solid var(--bone-line);}
+.sum-q .sq{font-family:var(--f-mono);font-size:10px;letter-spacing:0.14em;color:#6E6858;margin-bottom:5px;}
+.sum-q .sa{font-size:15px;line-height:1.5;}
+.sum-q .sa ul{margin:0;padding-left:16px;}
+.sum-q .sa li{margin:2px 0;}
+.sum-q .sa em{color:#8A8477;font-style:normal;}
+
+/* actions — these sit on the Ink page, not on the Bone sheet */
+.acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px;padding-top:24px;border-top:1px solid var(--line);}
+.acts .btn{background:var(--ink-raised);color:var(--bone);}
+.acts .btn:hover{background:var(--amber);color:var(--ink);}
+.acts .btn.amber{background:var(--amber);color:var(--ink);}
+.acts .btn.amber:hover{background:var(--bone);color:var(--ink);}
+.acts .btn.ghost{background:transparent;color:var(--bone);border:1.5px solid var(--line);}
+.acts .btn.ghost:hover{background:var(--bone);color:var(--ink);border-color:var(--bone);}
+
+/* ============================================================
+   MODEL STRIP + FOOTER
+   ============================================================ */
+.model{margin-top:56px;}
+.model-h{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+.model-h .l{flex:1;height:1px;background:var(--line);}
+.model-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+@media(max-width:760px){.model-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:430px){.model-grid{grid-template-columns:1fr;}}
+.mc{background:var(--ink-raised);padding:20px 18px 22px;}
+.mc .c{font-family:var(--f-mono);font-size:10px;letter-spacing:0.18em;color:var(--amber);margin-bottom:9px;}
+.mc .n{font-family:var(--f-display);font-variation-settings:'wdth' 112,'wght' 750;text-transform:uppercase;letter-spacing:-0.01em;font-size:17px;line-height:1.05;margin-bottom:8px;}
+.mc .d{font-size:13.5px;line-height:1.45;color:#9d9a92;}
+.mc.hit{background:var(--amber);}
+.mc.hit .c{color:var(--ink);}
+.mc.hit .n{color:var(--ink);}
+.mc.hit .d{color:#2A2A2E;}
+.model-note{font-size:13.5px;color:#8f8f98;margin:16px 0 0;max-width:62ch;}
+
+footer{border-top:1px solid var(--line);margin-top:56px;padding-top:28px;}
+.foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:flex-end;}
+.creed p{margin:0;font-family:var(--f-display);font-variation-settings:'wdth' 106,'wght' 600;font-size:14px;line-height:1.5;}
+.foot-meta{text-align:right;font-size:13px;color:#8f8f98;}
+.foot-meta a{color:#8f8f98;text-decoration:none;}
+.foot-meta a:hover{color:var(--amber);}
+
+/* ============================================================
+   PRINT — completed form / result becomes a clean document
+   ============================================================ */
+@media print{
+  @page{margin:14mm 13mm;}
+  body{background:#fff;color:#000;font-size:10.5pt;}
+  .rail,.acts,.nav,.model,.mast-nav,.no-print{display:none !important;}
+  .mast{border-bottom:1.5pt solid #000;}
+  .mast-in,.wrap{padding-left:0;padding-right:0;max-width:100%;}
+  .logo-name,.logo-sub,.mast-meta{color:#000 !important;}
+  .mk-plate{fill:#000 !important;}
+  .mk-letters path{stroke:#fff !important;}
+  .sheet,.summary{background:#fff;border:0;padding:0;}
+  .res-band{background:#fff !important;color:#000 !important;border:1.5pt solid #000;padding:16pt;}
+  .res-band *{color:#000 !important;}
+  .tier-code,.res-h,.sum-q .sq{color:#000 !important;}
+  .tm{background:#DDD !important;}.tm.on{background:#000 !important;}
+  .flagbox{background:#F2F2F2 !important;border-left:3pt solid #000;}
+  .sum-q{break-inside:avoid;}
+  footer{border-top:1pt solid #000;}
+  .foot-meta,.creed p{color:#000 !important;}
+}
+</style>
+</head>
+<body>
+<!-- ==================== MASTHEAD ==================== -->
+<header class="mast">
+  <div class="mast-in">
+    <a class="logo" href="/">
+      <svg width="42" height="42" viewBox="0 0 100 100" role="img" aria-label="Stringfellow Construction Group">
+        <path class="mk-plate" d="M14 0 H100 V86 L86 100 H0 V14 Z" fill="#FF5A14"/>
+        <g class="mk-letters" transform="translate(13 34) scale(0.336)" fill="none" stroke="#0B0B0C" stroke-width="14" stroke-linejoin="miter">
+          <path d="M58 10 L22 10 L10 22 L10 32 L22 44 L46 44 L58 56 L58 74 L46 86 L10 86"/>
+          <path d="M134 10 L98 10 L86 22 L86 74 L98 86 L134 86"/>
+          <path d="M210 10 L174 10 L162 22 L162 74 L174 86 L210 86 L210 52 L190 52"/>
+        </g>
+      </svg>
+      <span class="logo-txt">
+        <span class="logo-name">Stringfellow</span>
+        <span class="logo-sub">Construction Consulting · Business Consulting</span>
+      </span>
+    </a>
+    <div class="mast-meta">
+      <span class="mono dim">Client Fit &amp; Engagement Assessment</span>
+      <a class="mono" href="tel:+13176675243">(317)&nbsp;667-5243</a>
+    </div>
+  </div>
+  <nav class="mast-nav" aria-label="Site">
+    <div class="mast-nav-in">
+      <a href="/">Home</a>
+      <a href="/services">Construction</a>
+      <a href="/business">Business</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ==================== PROGRESS RAIL ==================== -->
+<div class="rail no-print" id="rail">
+  <div class="rail-in">
+    <div class="rail-row">
+      <span class="mono amber" id="railStep">SHEET 00 / 08</span>
+      <span class="mono dim" id="railName">INTRODUCTION</span>
+    </div>
+    <div class="rail-track"><div class="rail-fill" id="railFill"></div></div>
+    <div class="rail-ticks" id="railTicks"></div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- ==================== SHEET ==================== -->
+  <main class="sheet chamfer-tr" id="sheet">
+
+    <!-- INTRO -->
+    <section class="sec on" id="sec-intro" data-idx="0">
+      <div class="intro">
+        <div class="intro-kicker">
+          <span class="bar"></span>
+          <span class="mono" style="color:#6E6858">Form SCG-CF/01 · Rev. 2026</span>
+        </div>
+        <h1 class="display">Client Fit &amp;<br>Engagement<br>Assessment</h1>
+        <p class="lead">You don’t need to have the solution figured out. You just need to know something could be working better.</p>
+        <p>Stringfellow works with owners who need experience, judgment, planning, problem-solving, and implementation — not simply another contractor or a generic business coach.</p>
+        <p>This assessment helps determine whether we’re the right fit and what level of involvement your situation may require. It takes about six minutes, and your answers stay in your browser until you send them.</p>
+        <div class="tickrule"><span class="tk"></span><span class="ln"></span><span class="tk"></span><span class="ln"></span><span class="tk"></span></div>
+        <div class="grid" style="margin-left:0;gap:0;background:var(--bone-line);border:1px solid var(--bone-line);grid-template-columns:repeat(3,1fr)">
+          <div style="background:var(--bone);padding:16px 18px">
+            <div class="mono" style="color:#6E6858;margin-bottom:6px">Sections</div>
+            <div style="font-family:var(--f-mono);font-size:21px;font-weight:700">08</div>
+          </div>
+          <div style="background:var(--bone);padding:16px 18px">
+            <div class="mono" style="color:#6E6858;margin-bottom:6px">Time</div>
+            <div style="font-family:var(--f-mono);font-size:21px;font-weight:700">~6 MIN</div>
+          </div>
+          <div style="background:var(--bone);padding:16px 18px">
+            <div class="mono" style="color:#6E6858;margin-bottom:6px">Output</div>
+            <div style="font-family:var(--f-mono);font-size:21px;font-weight:700">TIER</div>
+          </div>
+        </div>
+      </div>
+      <div class="nav">
+        <span class="nav-note">Nothing is submitted until you choose to send it.</span>
+        <button class="btn amber chamfer-btn" type="button" data-go="next">Begin assessment →</button>
+      </div>
+    </section>
+
+    <!-- DYNAMIC SECTIONS INJECTED HERE -->
+    <div id="sections"></div>
+
+  </main>
+
+  <!-- ==================== RESULT ==================== -->
+  <section class="result" id="result" aria-live="polite"></section>
+
+  <!-- ==================== MODEL STRIP ==================== -->
+  <section class="model no-print" id="modelStrip">
+    <div class="model-h">
+      <span class="mono amber">The Stringfellow Model</span>
+      <span class="l"></span>
+    </div>
+    <div class="model-grid" id="modelGrid"></div>
+    <p class="model-note">You don’t automatically move through every tier. Your situation determines where Stringfellow enters — and where our involvement should end.</p>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="foot">
+      <div class="creed">
+        <p>Experience before expense.<br>Structure before scale.<br>Solutions before more problems.</p>
+      </div>
+      <div class="foot-meta">
+        <div class="mono" style="margin-bottom:6px">Stringfellow Construction Group LLC</div>
+        <div>Construction Consulting · Business Consulting</div>
+        <div><a href="tel:+13176675243">(317) 667-5243</a> · <a href="/">scg.revieweditmelo.com</a></div>
+      </div>
+    </div>
+  </footer>
+</div>
+<script>
+/* ============================================================
+   STRINGFELLOW CONSULTING GROUP
+   CLIENT FIT & ENGAGEMENT ASSESSMENT — question model
+   Single source of truth for the HTML form and the Word version.
+
+   Option keys:
+     t    label text
+     d    depth weight 1–4 (drives tier)
+     f    fit-flag (poor-fit signal)
+     hard hard disqualifier (single answer ends the assessment)
+     b    bold lead-in
+   ============================================================ */
+
+const MODEL = {
+  brand: {
+    name: "STRINGFELLOW",
+    legal: "Stringfellow Construction Group LLC",
+    sub: "Construction Consulting · Business Consulting",
+    phone: "(317) 667-5243",
+    site: "scg.revieweditmelo.com",
+    tagline: "Hire the expertise before you hire the contractor.",
+    creed: ["Experience before expense.", "Structure before scale.", "Solutions before more problems."]
+  },
+
+  intro: {
+    title: "CLIENT FIT & ENGAGEMENT ASSESSMENT",
+    lead: "You don’t need to have the solution figured out. You just need to know something could be working better.",
+    body: [
+      "Stringfellow works with owners who need experience, judgment, planning, problem-solving, and implementation — not simply another contractor or a generic business coach.",
+      "This assessment helps determine whether we’re the right fit and what level of involvement your situation may require. It takes about six minutes."
+    ]
+  },
+
+  sections: [
+    /* ---------------------------------------------------- 01 */
+    {
+      id: "orientation",
+      num: "01",
+      title: "ORIENTATION",
+      blurb: "Start with why you’re here.",
+      questions: [
+        {
+          id: "q1", num: "1", type: "radio",
+          title: "WHAT BROUGHT YOU TO STRINGFELLOW?",
+          sub: "Choose the closest answer.",
+          options: [
+            { t: "I have a specific question or decision and want an experienced second opinion.", d: 1 },
+            { t: "I know what I want to accomplish but need help developing the right plan.", d: 2 },
+            { t: "Something isn’t working and I need help figuring out why.", d: 2 },
+            { t: "I understand the problem but don’t have the systems or resources to correct it.", d: 3 },
+            { t: "I need someone experienced to help oversee implementation.", d: 3 },
+            { t: "My business or project has become too complex for me to manage effectively by myself.", d: 4, v: "complex" },
+            { t: "I primarily need someone to give me a price and perform construction work.", d: 1, f: true },
+            { t: "I’m looking for free estimates or bids so I can compare prices.", d: 1, f: true, hard: true }
+          ]
+        },
+        {
+          id: "q2", num: "2", type: "radio",
+          title: "WHICH SIDE BEST DESCRIBES YOUR NEED?",
+          sub: "This determines which sections you’ll see next.",
+          options: [
+            { t: "Construction Consulting", v: "construction" },
+            { t: "Business Consulting", v: "business" },
+            { t: "Both", v: "both" },
+            { t: "I’m not sure.", v: "unsure" }
+          ]
+        },
+        {
+          id: "q3", num: "3", type: "check",
+          title: "WHAT DO YOU NEED HELP WITH?",
+          sub: "Select all that apply.",
+          options: [
+            { t: "Business operations" },
+            { t: "Growth / scaling" },
+            { t: "Employees, contractors, or management" },
+            { t: "Roles and responsibilities" },
+            { t: "Processes or systems" },
+            { t: "Scheduling / workflow" },
+            { t: "Pricing or profitability" },
+            { t: "Project planning" },
+            { t: "Construction planning" },
+            { t: "Estimating / budgeting" },
+            { t: "Contractor or vendor management" },
+            { t: "A construction project that’s getting off track" },
+            { t: "Construction documentation / scope review" },
+            { t: "Insurance claim, denial, or property recovery" },
+            { t: "I’m considering a major decision and want a second opinion" },
+            { t: "I’m not exactly sure — I just know something isn’t working" }
+          ]
+        }
+      ]
+    },
+
+    /* ---------------------------------------------------- 02 */
+    {
+      id: "business",
+      num: "02",
+      title: "BUSINESS CONSULTING",
+      blurb: "Symptoms we see most often on the business side.",
+      showIf: ["business", "both", "unsure"],
+      questions: [
+        {
+          id: "q4", num: "4", type: "check", symptom: true,
+          title: "DOES ANY OF THIS SOUND FAMILIAR?",
+          sub: "Select all that apply.",
+          options: [
+            { t: "The business has grown faster than our systems." },
+            { t: "Too many decisions still have to come through me." },
+            { t: "My employees aren’t always clear about who’s responsible for what." },
+            { t: "I have good people, but the operation still feels disorganized." },
+            { t: "We solve the same problems repeatedly." },
+            { t: "Important information lives mostly in people’s heads." },
+            { t: "We need better procedures or documentation." },
+            { t: "I’m having difficulty delegating without losing control." },
+            { t: "Our managers need clearer authority and accountability." },
+            { t: "Scheduling or workflow has become difficult to manage." },
+            { t: "We’re busy, but I’m not convinced we’re as profitable as we should be." },
+            { t: "I need to understand where we’re actually making or losing money." },
+            { t: "The business depends too heavily on one or two people." },
+            { t: "I want to grow, but I’m concerned our current operation can’t support it." },
+            { t: "I’ve reached a point where working harder isn’t solving the problem." }
+          ],
+          callout: {
+            cond: "If you checked several of these:",
+            lines: ["The problem may not be your business.", "Your business may simply have outgrown the systems that got it here."]
+          }
+        }
+      ]
+    },
+
+    /* ---------------------------------------------------- 03 */
+    {
+      id: "construction",
+      num: "03",
+      title: "CONSTRUCTION CONSULTING",
+      blurb: "Symptoms we see most often on the construction side.",
+      showIf: ["construction", "both", "unsure"],
+      questions: [
+        {
+          id: "q5", num: "5", type: "check", symptom: true,
+          title: "ARE YOU FACING A CONSTRUCTION DECISION OR PROJECT?",
+          sub: "Select all that apply.",
+          options: [
+            { t: "I’m planning a project and don’t know where to start." },
+            { t: "I need an experienced second opinion before signing a contract." },
+            { t: "I want someone to review a proposal or scope of work." },
+            { t: "I’m not confident I’m comparing contractor bids correctly." },
+            { t: "I need help establishing a realistic budget." },
+            { t: "I need help developing the scope before requesting bids." },
+            { t: "I’m concerned about change orders or unexpected costs." },
+            { t: "I need someone representing the owner’s interests." },
+            { t: "My project is already underway and problems are developing." },
+            { t: "Communication between contractors or trades is breaking down." },
+            { t: "The schedule is slipping." },
+            { t: "Costs are getting away from us." },
+            { t: "The completed work doesn’t appear to match what was contracted." },
+            { t: "I need help documenting an existing construction problem." },
+            { t: "An insurance carrier’s estimate doesn’t appear to cover the actual scope." },
+            { t: "I need someone who understands construction but doesn’t necessarily need another contractor." }
+          ],
+          callout: {
+            cond: "If you checked several of these:",
+            lines: ["You may not need someone to build the project.", "You may need someone experienced enough to help you make the right decisions about it."]
+          }
+        }
+      ]
+    },
+
+    /* ---------------------------------------------------- 04 */
+    {
+      id: "diagnosis",
+      num: "04",
+      title: "THE SITUATION",
+      blurb: "How well defined is the problem, and how far has it spread?",
+      questions: [
+        {
+          id: "q6", num: "6", type: "radio",
+          title: "HOW WELL DO YOU UNDERSTAND THE PROBLEM?",
+          options: [
+            { t: "Very well. I mainly need an experienced second opinion.", d: 1 },
+            { t: "Mostly. I need help evaluating my options.", d: 2 },
+            { t: "Partially. I can see the symptoms but don’t know the underlying cause.", d: 2 },
+            { t: "Poorly. Something isn’t working, but I don’t know why.", d: 3 },
+            { t: "The problem is already significant and needs immediate attention.", d: 3 }
+          ]
+        },
+        {
+          id: "q7", num: "7", type: "radio",
+          title: "HOW COMPLEX IS THE SITUATION?",
+          options: [
+            { t: "One isolated question or decision.", d: 1 },
+            { t: "One defined problem involving a few variables.", d: 2 },
+            { t: "Several connected problems.", d: 3 },
+            { t: "Multiple people, departments, contractors, or systems are involved.", d: 4 },
+            { t: "The problem affects a significant portion of the business or project.", d: 4 },
+            { t: "I don’t know how extensive the problem actually is.", d: 3 }
+          ]
+        },
+        {
+          id: "q8", num: "8", type: "radio",
+          title: "HOW MANY PEOPLE ARE AFFECTED?",
+          options: [
+            { t: "Primarily me.", d: 1 },
+            { t: "2–5 people.", d: 2 },
+            { t: "6–15 people.", d: 3 },
+            { t: "16+ people.", d: 4 },
+            { t: "Multiple companies, contractors, departments, or stakeholders.", d: 4 }
+          ]
+        },
+        {
+          id: "q9", num: "9", type: "radio",
+          title: "WHAT IS THE FINANCIAL OR OPERATIONAL IMPACT?",
+          options: [
+            { t: "Minimal. I’m trying to make a good decision before committing.", d: 1 },
+            { t: "The problem costs us some time or money.", d: 2 },
+            { t: "The problem regularly creates inefficiency or unnecessary expense.", d: 3 },
+            { t: "It is materially affecting profitability, productivity, or the project.", d: 4 },
+            { t: "The potential financial exposure is significant.", d: 4 },
+            { t: "I don’t know — and determining that is part of what I need help with.", d: 2 }
+          ]
+        },
+        {
+          id: "q10", num: "10", type: "radio",
+          title: "WHAT STAGE ARE YOU IN?",
+          options: [
+            { t: "Before the problem. I want to make the right decision from the beginning.", d: 1 },
+            { t: "Planning. I know what I want to accomplish but need a roadmap.", d: 2 },
+            { t: "Early problem. Something isn’t working correctly.", d: 2 },
+            { t: "Active problem. It’s already costing time, money, or opportunities.", d: 3 },
+            { t: "Recovery. Previous decisions or work have created a significant problem.", d: 4, v: "recovery" },
+            { t: "Growth. What worked before can no longer support where we’re going.", d: 4, v: "growth" }
+          ]
+        },
+        {
+          id: "q11", num: "11", type: "check",
+          title: "WHAT HAPPENS IF NOTHING CHANGES?",
+          sub: "Select all that apply.",
+          options: [
+            { t: "Probably nothing significant.", d: 1 },
+            { t: "It will continue costing us time.", d: 2 },
+            { t: "It will continue costing us money.", d: 2 },
+            { t: "It is creating frustration for me or my team.", d: 2 },
+            { t: "It’s preventing us from growing.", d: 3 },
+            { t: "It could create a larger problem later.", d: 3 },
+            { t: "It is already becoming an expensive problem.", d: 4 },
+            { t: "I’m not sure — and that’s part of why I’m looking for help.", d: 2 }
+          ]
+        },
+        {
+          id: "q12", num: "12", type: "radio",
+          title: "HOW SOON DOES THIS NEED ATTENTION?",
+          options: [
+            { t: "I’m exploring options." },
+            { t: "Within the next 30–60 days." },
+            { t: "Within the next few weeks." },
+            { t: "As soon as possible." },
+            { t: "We’re already in the middle of the problem." }
+          ]
+        }
+      ]
+    },
+
+    /* ---------------------------------------------------- 05 */
+    {
+      id: "scope",
+      num: "05",
+      title: "SCOPE OF INVOLVEMENT",
+      blurb: "What you want us to actually do, and how far you want us to go.",
+      questions: [
+        {
+          id: "q13", num: "13", type: "check", useMaxDepth: true,
+          title: "WHAT DO YOU NEED FROM US?",
+          sub: "Select everything that applies.",
+          options: [
+            { t: "Review the situation and give me your opinion.", d: 1 },
+            { t: "Help me understand my options.", d: 1 },
+            { t: "Identify the underlying problem.", d: 2 },
+            { t: "Develop a written plan.", d: 2 },
+            { t: "Develop processes, procedures, scopes, or documentation.", d: 2 },
+            { t: "Help establish budgets, pricing, schedules, or responsibilities.", d: 2 },
+            { t: "Work with employees, managers, contractors, or vendors.", d: 3 },
+            { t: "Help implement the solution.", d: 3 },
+            { t: "Monitor results and make adjustments.", d: 4 },
+            { t: "Take an ongoing advisory or management role.", d: 4, v: "ongoing" },
+            { t: "Simply perform the work exactly as I specify.", d: 1, f: true }
+          ]
+        },
+        {
+          id: "q14", num: "14", type: "radio", weight: 2,
+          title: "HOW INVOLVED DO YOU WANT STRINGFELLOW TO BE?",
+          options: [
+            { t: "Advise me. I’ll handle everything after that.", d: 1, v: "advise" },
+            { t: "Help me develop the plan. My team can execute it.", d: 2 },
+            { t: "Help diagnose and design the solution.", d: 2 },
+            { t: "Stay involved during implementation.", d: 3 },
+            { t: "Work directly with my team or contractors to implement it.", d: 4, v: "handson" },
+            { t: "Remain involved until the new system or project is functioning properly.", d: 4, v: "handson" }
+          ]
+        },
+        {
+          id: "q15", num: "15", type: "check",
+          title: "WHAT HAVE YOU ALREADY TRIED?",
+          sub: "Select all that apply.",
+          options: [
+            { t: "Nothing yet." },
+            { t: "I’ve researched the problem myself." },
+            { t: "We’ve tried making internal changes." },
+            { t: "We’ve hired someone previously." },
+            { t: "We’ve tried multiple solutions without success.", d: 3 },
+            { t: "We’ve been dealing with this for a long time.", d: 3 },
+            { t: "I’m looking for someone to confirm the solution I’ve already chosen.", f: true }
+          ]
+        }
+      ]
+    },
+
+    /* ---------------------------------------------------- 06 */
+    {
+      id: "fit",
+      num: "06",
+      title: "WORKING TOGETHER",
+      blurb: "Consulting only works when the client is willing to act on what we find.",
+      questions: [
+        {
+          id: "q16", num: "16", type: "radio",
+          title: "HOW DO YOU MAKE DECISIONS?",
+          sub: "Choose the answer that describes you best.",
+          options: [
+            { t: "I want candid professional advice, even when it challenges my original thinking." },
+            { t: "I want to understand the reasoning before making a decision." },
+            { t: "I’m open to changing my approach when the evidence supports it." },
+            { t: "I generally know what I want and primarily need someone to execute it.", f: true },
+            { t: "I want someone to confirm that my current approach is correct.", f: true },
+            { t: "I’m collecting several opinions and will probably choose whichever one I agree with.", f: true }
+          ]
+        },
+        {
+          id: "q17", num: "17", type: "radio",
+          title: "IF WE IDENTIFY A PROBLEM, ARE YOU PREPARED TO ADDRESS IT?",
+          options: [
+            { t: "Yes. That’s why I’m contacting you." },
+            { t: "Yes, provided the solution makes financial and operational sense." },
+            { t: "Possibly. I need to understand the options first." },
+            { t: "Probably not immediately." },
+            { t: "I’m primarily gathering information.", f: true },
+            { t: "I don’t intend to make significant changes.", f: true, hard: true }
+          ]
+        },
+        {
+          id: "q18", num: "18", type: "radio",
+          title: "WHICH MATTERS MOST TO YOU?",
+          options: [
+            { t: "Making the right decision." },
+            { t: "Reducing risk." },
+            { t: "Solving the underlying problem." },
+            { t: "Building something that works long-term." },
+            { t: "Improving profitability or efficiency." },
+            { t: "Getting the project or business under control." },
+            { t: "Finding the lowest-cost provider.", f: true },
+            { t: "Getting someone to start immediately regardless of planning.", f: true }
+          ]
+        },
+        {
+          id: "q19", num: "19", type: "radio",
+          title: "WHAT ARE YOU ACTUALLY LOOKING TO BUY?",
+          options: [
+            { t: "Experience and judgment." },
+            { t: "An independent perspective." },
+            { t: "A solution to a problem." },
+            { t: "A plan or system." },
+            { t: "Implementation and accountability." },
+            { t: "Ongoing strategic or operational support." },
+            { t: "Labor.", f: true },
+            { t: "A construction estimate.", f: true },
+            { t: "The lowest possible price.", f: true, hard: true },
+            { t: "I’m not sure yet." }
+          ]
+        },
+        {
+          id: "q20", num: "20", type: "radio",
+          title: "ARE YOU COMFORTABLE PAYING FOR PROFESSIONAL CONSULTATION, PLANNING, AND PROBLEM-SOLVING?",
+          sub: "Stringfellow’s primary product is experience and expertise. Consulting, assessment, planning, and problem-solving are professional services and are billed accordingly.",
+          options: [
+            { t: "Yes." },
+            { t: "Yes, if Stringfellow appears to be the right resource." },
+            { t: "I need to understand the cost first." },
+            { t: "I expected the consultation or estimate to be free.", f: true, hard: true },
+            { t: "I only intend to pay if Stringfellow performs the resulting construction work.", f: true, hard: true }
+          ]
+        }
+      ]
+    },
+
+    /* ---------------------------------------------------- 07 */
+    {
+      id: "narrative",
+      num: "07",
+      title: "IN YOUR OWN WORDS",
+      blurb: "The most useful section on this form. Be as plain as you like.",
+      questions: [
+        { id: "n1", num: "21", type: "textarea", title: "WHAT’S HAPPENING NOW?", rows: 5 },
+        { id: "n2", num: "22", type: "textarea", title: "WHAT DO YOU BELIEVE IS CAUSING IT?", rows: 4 },
+        { id: "n3", num: "23", type: "textarea", title: "WHAT WOULD A SUCCESSFUL OUTCOME LOOK LIKE?", rows: 4 },
+        { id: "n4", num: "24", type: "textarea", title: "ANYTHING ELSE WE SHOULD KNOW?", sub: "Optional.", rows: 3 }
+      ]
+    },
+
+    /* ---------------------------------------------------- 08 */
+    {
+      id: "about",
+      num: "08",
+      title: "TELL US ABOUT YOU",
+      blurb: "So we can get back to you.",
+      questions: [
+        {
+          id: "about", num: "25", type: "fields",
+          title: "CONTACT & COMPANY",
+          fields: [
+            { id: "f_name", label: "NAME", required: true, half: true },
+            { id: "f_company", label: "COMPANY", half: true },
+            { id: "f_email", label: "EMAIL", type: "email", required: true, half: true },
+            { id: "f_phone", label: "PHONE", type: "tel", required: true, half: true },
+            { id: "f_industry", label: "INDUSTRY / TYPE OF BUSINESS", half: true },
+            { id: "f_property", label: "PROPERTY OR ASSET TYPE", sub: "House, rental, church, business", half: true },
+            { id: "f_value", label: "APPROX. VALUE OR BUDGET RANGE", half: true },
+            { id: "f_city", label: "PROJECT CITY / COUNTY", half: true },
+            { id: "f_headcount", label: "APPROX. EMPLOYEES / CONTRACTORS", half: true },
+            { id: "f_years", label: "YEARS IN BUSINESS", half: true },
+            { id: "f_referral", label: "HOW DID YOU HEAR ABOUT STRINGFELLOW?", half: false }
+          ]
+        }
+      ]
+    }
+  ],
+
+  tiers: [
+    {
+      key: 1, code: "TIER 01", name: "CONSULT",
+      strap: "CLARITY BEFORE COMMITMENT.",
+      anchor: "Typical starting engagement: up to two hours.",
+      price: "$227 — up to two hours",
+      suited: [
+        "A defined question or decision",
+        "Second opinions",
+        "Initial problem evaluation",
+        "Proposal or scope review",
+        "Strategy conversations",
+        "Owners who intend to implement the recommendations themselves"
+      ],
+      close: "You leave with written findings, recommended next steps, and a clear view of what the decision actually involves."
+    },
+    {
+      key: 2, code: "TIER 02", name: "PLAN",
+      strap: "DIAGNOSE IT. DESIGN IT. DOCUMENT IT.",
+      anchor: "Scoped to the size of the problem.",
+      price: "From $997",
+      suited: [
+        "Problems requiring investigation",
+        "Operational assessments",
+        "Construction and project planning",
+        "Process development",
+        "Scope development",
+        "Organizational structure",
+        "Written procedures",
+        "Budgets and schedules",
+        "Defined implementation plans"
+      ],
+      close: "The deliverable isn’t simply advice. It’s the roadmap."
+    },
+    {
+      key: 3, code: "TIER 03", name: "IMPLEMENT / RECOVER",
+      strap: "WHEN A PLAN ISN’T ENOUGH.",
+      anchor: "Scope and fee are set after the assessment.",
+      price: "Quoted per engagement",
+      suited: [
+        "Active operational problems",
+        "Troubled projects",
+        "Multiple stakeholders",
+        "Systems that need to be rebuilt",
+        "Management or process breakdowns",
+        "Contractor and vendor coordination",
+        "Insurance and property recovery documentation",
+        "Implementation requiring Stringfellow’s continued involvement"
+      ],
+      close: "Stringfellow helps move the solution from paper into operation."
+    },
+    {
+      key: 4, code: "TIER 04", name: "PARTNER / SCALE",
+      strap: "WHEN THE PROBLEM IS BIGGER THAN A PROJECT.",
+      anchor: "Engagement minimums apply.",
+      price: "From $10,000",
+      suited: [
+        "Growing businesses",
+        "Significant organizational change",
+        "Multiple interconnected systems",
+        "Owner dependency",
+        "Management development",
+        "Expansion",
+        "Complex construction programs",
+        "Long-term implementation",
+        "Ongoing owner advisory",
+        "Businesses requiring experienced operational leadership without adding another full-time executive"
+      ],
+      close: "Stringfellow works alongside ownership through implementation, measurement, adjustment, and growth."
+    }
+  ],
+
+  notFit: {
+    title: "STRINGFELLOW MAY NOT BE THE RIGHT FIT.",
+    lead: "Based on your answers, what you’re looking for may sit outside how we work. That’s worth saying plainly rather than wasting your time.",
+    list: [
+      "Free estimates or unpaid project planning",
+      "The lowest construction bid",
+      "Additional labor without consulting",
+      "Someone to simply execute predetermined instructions",
+      "Someone to validate a decision regardless of our findings",
+      "Advice without an intention to address the underlying problem",
+      "Guaranteed business results",
+      "Legal, accounting, tax, engineering, architectural, or insurance-adjusting services outside our professional scope"
+    ],
+    close: [
+      "That’s okay.",
+      "Not every problem requires Stringfellow, and not every client is a Stringfellow client.",
+      "Our job is to determine whether our experience can create enough value to justify our involvement.",
+      "The brief introductory call is still free. If we’ve read your situation wrong, send this form anyway and tell us where we missed."
+    ]
+  },
+
+  next: {
+    title: "WHAT HAPPENS NEXT?",
+    lines: [
+      "We review your answers before recommending an engagement.",
+      "Sometimes the answer is a two-hour consultation.",
+      "Sometimes the problem requires planning, analysis, documentation, or implementation.",
+      "And sometimes we’ll tell you that you don’t need us at all."
+    ],
+    bold: ["The objective isn’t to sell you the largest engagement.", "It’s to determine what the problem actually requires."]
+  }
+};
+
+if (typeof module !== "undefined") module.exports = MODEL;
+
+/* ============================================================
+   ENGINE — rendering, scoring, result, export
+   ============================================================ */
+
+/* ---- CONFIG: edit these two lines to wire up delivery -------
+   SUBMIT_ENDPOINT  Leave "" to keep the form offline (print /
+                    copy / email only). Paste a Formspree,
+                    Netlify Forms, Basin, or custom URL to POST
+                    completed assessments straight to your inbox.
+   CONTACT_EMAIL    Used by the "Email to Stringfellow" button.
+   ------------------------------------------------------------ */
+const SUBMIT_ENDPOINT = "";
+const CONTACT_EMAIL   = "frjesye1@gmail.com";
+
+/* ---------- state ---------- */
+const QINDEX = {};
+MODEL.sections.forEach(s => s.questions.forEach(q => { QINDEX[q.id] = q; q._sec = s; }));
+
+const state = { answers: {}, idx: 0, order: [] };
+
+const $  = (s, r) => (r || document).querySelector(s);
+const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+const esc = t => String(t).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+function optRow(q, o, i) {
+  const type = q.type === "radio" ? "radio" : "checkbox";
+  const id = `${q.id}_${i}`;
+  return `<label class="opt" for="${id}">
+      <input type="${type}" name="${q.id}" id="${id}" value="${i}">
+      <span class="box" aria-hidden="true"></span>
+      <span class="lab">${esc(o.t)}</span>
+    </label>`;
+}
+
+function questionHTML(q) {
+  let inner = "";
+  if (q.type === "radio" || q.type === "check") {
+    inner = `<div class="opts" role="${q.type === "radio" ? "radiogroup" : "group"}">
+        ${q.options.map((o, i) => optRow(q, o, i)).join("")}
+      </div>`;
+    if (q.callout) {
+      inner += `<div class="callout">
+          <div class="c-cond">${esc(q.callout.cond)}</div>
+          ${q.callout.lines.map(l => `<p>${esc(l)}</p>`).join("")}
+        </div>`;
+    }
+  } else if (q.type === "textarea") {
+    inner = `<textarea class="ta" id="${q.id}" name="${q.id}" rows="${q.rows || 4}"
+               placeholder="Type here…"></textarea>`;
+  } else if (q.type === "fields") {
+    inner = `<div class="grid">${q.fields.map(f => `
+        <div class="fld ${f.half ? "" : "full"}">
+          <label for="${f.id}">${esc(f.label)}${f.required ? ' <span class="req">*</span>' : ""}${f.sub ? ` <span style="opacity:.62">— ${esc(f.sub)}</span>` : ""}</label>
+          <input class="inp" type="${f.type || "text"}" id="${f.id}" name="${f.id}"
+                 autocomplete="${f.id === "f_name" ? "name" : f.id === "f_email" ? "email" : f.id === "f_phone" ? "tel" : f.id === "f_company" ? "organization" : "on"}">
+        </div>`).join("")}</div>`;
+  }
+  return `<div class="q" data-q="${q.id}">
+      <div class="q-head">
+        <span class="q-num">${q.num}</span>
+        <h3 class="sect-h">${esc(q.title)}</h3>
+      </div>
+      ${q.sub ? `<p class="q-sub${q.id === "q20" ? " strong" : ""}">${esc(q.sub)}</p>` : ""}
+      ${inner}
+    </div>`;
+}
+
+function sectionHTML(s, n, total) {
+  return `<section class="sec" id="sec-${s.id}" data-sec="${s.id}">
+      <div class="sec-head">
+        <div class="sec-tag">
+          <span class="n">Sheet ${n} / ${total}</span>
+          <span class="l"></span>
+          <span class="mono" style="color:#6E6858">${esc(MODEL.brand.name)}</span>
+        </div>
+        <h2 class="sect-h">${esc(s.title)}</h2>
+        ${s.blurb ? `<p class="sec-blurb">${esc(s.blurb)}</p>` : ""}
+      </div>
+      ${s.questions.map(questionHTML).join("")}
+      <div class="err" id="err-${s.id}">Please answer the required questions above before continuing.</div>
+      <div class="nav">
+        <button class="btn ghost chamfer-btn" type="button" data-go="prev">← Back</button>
+        <button class="btn amber chamfer-btn" type="button" data-go="next">Continue →</button>
+      </div>
+    </section>`;
+}
+
+function build() {
+  const total = String(MODEL.sections.length).padStart(2, "0");
+  $("#sections").innerHTML = MODEL.sections
+    .map((s, i) => sectionHTML(s, String(i + 1).padStart(2, "0"), total)).join("");
+
+  $("#modelGrid").innerHTML = MODEL.tiers.map(t => `
+    <div class="mc" data-tier="${t.key}">
+      <div class="c">${esc(t.code)}</div>
+      <div class="n">${esc(t.name)}</div>
+      <div class="d">${esc(t.strap)}</div>
+    </div>`).join("");
+
+  document.addEventListener("change", onChange);
+  document.addEventListener("click", e => {
+    const b = e.target.closest("[data-go]");
+    if (b) { e.preventDefault(); b.dataset.go === "next" ? next() : prev(); }
+  });
+  recomputeOrder();
+  paintRail();
+}
+
+/* ---------- conditional section order ---------- */
+function recomputeOrder() {
+  const q2 = state.answers.q2;
+  const side = q2 == null ? null : (QINDEX.q2.options[q2].v);
+  state.order = ["intro"].concat(
+    MODEL.sections.filter(s => !s.showIf || side == null || s.showIf.includes(side)).map(s => s.id)
+  );
+}
+
+/* ---------- answer capture ---------- */
+function onChange(e) {
+  const el = e.target;
+  if (!el.name) return;
+  const q = QINDEX[el.name];
+  if (q) {
+    if (q.type === "radio") state.answers[q.id] = Number(el.value);
+    else if (q.type === "check") {
+      state.answers[q.id] = $$(`input[name="${q.id}"]:checked`).map(i => Number(i.value));
+    } else state.answers[q.id] = el.value;
+  } else {
+    state.answers[el.name] = el.value;   // contact fields
+  }
+  if (el.name === "q2") {
+    const cur = state.order[state.idx];
+    recomputeOrder();
+    const back = state.order.indexOf(cur);
+    if (back > -1) state.idx = back;
+  }
+  const errEl = el.closest(".sec") && $(".err", el.closest(".sec"));
+  if (errEl) errEl.classList.remove("on");
+}
+
+/* ---------- navigation ---------- */
+function requiredOK(secId) {
+  const s = MODEL.sections.find(x => x.id === secId);
+  if (!s) return true;
+  for (const q of s.questions) {
+    if (q.type === "radio" && state.answers[q.id] == null) return false;
+    if (q.type === "fields") {
+      for (const f of q.fields) {
+        if (f.required && !String(state.answers[f.id] || "").trim()) return false;
+        if (f.id === "f_email" && f.required) {
+          const v = String(state.answers.f_email || "");
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return false;
+        }
+      }
+    }
+  }
+  return true;
+}
+
+function show(id) {
+  $$(".sec").forEach(s => s.classList.remove("on"));
+  const el = $("#sec-" + id);
+  if (el) el.classList.add("on");
+  paintRail();
+  const y = $("#sheet").getBoundingClientRect().top + window.scrollY - 78;
+  window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+}
+
+function next() {
+  const cur = state.order[state.idx];
+  if (cur !== "intro" && !requiredOK(cur)) {
+    const err = $("#err-" + cur);
+    if (err) { err.classList.add("on"); err.scrollIntoView({ block: "center", behavior: "smooth" }); }
+    return;
+  }
+  if (state.idx >= state.order.length - 1) return finish();
+  state.idx++;
+  show(state.order[state.idx]);
+}
+function prev() {
+  if (state.idx === 0) return;
+  state.idx--;
+  show(state.order[state.idx]);
+}
+
+function paintRail() {
+  const n = state.idx, total = state.order.length - 1;
+  const id = state.order[state.idx];
+  const s = MODEL.sections.find(x => x.id === id);
+  $("#railStep").textContent = `Sheet ${String(n).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+  $("#railName").textContent = s ? s.title : "Introduction";
+  $("#railFill").style.width = (total ? (n / total) * 100 : 0) + "%";
+  $("#railTicks").innerHTML = Array.from({ length: total }, () => `<span class="rail-tick"></span>`).join("");
+  // keep the printed sheet numbers in sync with the (conditional) section order
+  state.order.slice(1).forEach((sid, i) => {
+    const tag = $(`#sec-${sid} .sec-tag .n`);
+    if (tag) tag.textContent = `Sheet ${String(i + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+  });
+  const last = state.idx === state.order.length - 1;
+  const btn = $(`#sec-${id} [data-go="next"]`);
+  if (btn && last) btn.textContent = "See my engagement level →";
+}
+
+/* ============================================================
+   SCORING
+   ============================================================ */
+function selectedOptions(qid) {
+  const q = QINDEX[qid]; if (!q) return [];
+  const a = state.answers[qid];
+  if (a == null) return [];
+  if (q.type === "radio") return [q.options[a]].filter(Boolean);
+  if (q.type === "check") return (a || []).map(i => q.options[i]).filter(Boolean);
+  return [];
+}
+const maxDepth = qid => selectedOptions(qid).reduce((m, o) => Math.max(m, o.d || 0), 0);
+const hasV = (qid, v) => selectedOptions(qid).some(o => o.v === v);
+
+function score() {
+  /* --- fit flags --- */
+  const flags = [], hard = [];
+  Object.keys(QINDEX).forEach(qid => selectedOptions(qid).forEach(o => {
+    if (o.hard) hard.push(o.t);
+    else if (o.f) flags.push(o.t);
+  }));
+
+  /* --- symptom load --- */
+  const sym = (state.answers.q4 || []).length + (state.answers.q5 || []).length;
+  const symBonus = sym >= 10 ? 0.60 : sym >= 6 ? 0.45 : sym >= 3 ? 0.25 : 0;
+
+  /* --- weighted depth --- */
+  const parts = [
+    [maxDepth("q1"), 1], [maxDepth("q6"), 1], [maxDepth("q7"), 1],
+    [maxDepth("q8"), 1], [maxDepth("q9"), 1], [maxDepth("q10"), 1],
+    [maxDepth("q13"), 1], [maxDepth("q14"), 2], [maxDepth("q11"), 0.5]
+  ].filter(p => p[0] > 0);
+  const wsum = parts.reduce((a, p) => a + p[1], 0) || 1;
+  const raw  = parts.reduce((a, p) => a + p[0] * p[1], 0) / wsum;
+  const val  = Math.min(4, raw + symBonus);
+
+  /* --- band --- */
+  let tier = val < 1.80 ? 1 : val < 2.55 ? 2 : val < 3.25 ? 3 : 4;
+  const notes = [];
+
+  /* --- gate signals -------------------------------------------------
+     Tier is fundamentally about HOW FAR Stringfellow goes, modulated by
+     complexity. Severity alone should not buy a Tier 3 or Tier 4 answer. */
+  const implSignal =
+    maxDepth("q14") >= 3 ||
+    selectedOptions("q13").some(o => (o.d || 0) >= 3) ||
+    hasV("q10", "recovery");
+  const partnerSignal =
+    hasV("q10", "growth") || hasV("q13", "ongoing") || hasV("q1", "complex");
+
+  /* --- floors --- */
+  if (hasV("q10", "recovery") && tier < 3) { tier = 3; notes.push("recovery stage"); }
+  if (hasV("q14", "handson")  && tier < 3) { tier = 3; notes.push("hands-on implementation requested"); }
+  if (hasV("q13", "ongoing")  && tier < 3) { tier = 3; notes.push("ongoing role requested"); }
+  if (hasV("q1",  "complex")  && val >= 3.0 && partnerSignal) { tier = 4; notes.push("complexity beyond owner capacity"); }
+
+  /* --- ceilings --- */
+  if (tier === 4 && !partnerSignal) { tier = 3; notes.push("finite scope — not an ongoing partnership"); }
+  if (tier >= 3 && !implSignal)     { tier = 2; notes.push("planning scope — no implementation requested"); }
+  if (hasV("q14", "advise") && maxDepth("q7") <= 1 && maxDepth("q1") <= 2) { tier = 1; notes.push("single decision, advisory only"); }
+
+  /* --- outcome --- */
+  const outcome = (hard.length >= 1 || flags.length >= 3) ? "notfit" : "tier";
+
+  return { tier, val: Math.round(val * 100) / 100, flags, hard, outcome, sym, notes };
+}
+
+/* ============================================================
+   RESULT
+   ============================================================ */
+function sideLabel() {
+  const a = state.answers.q2;
+  if (a == null) return "—";
+  return ({ construction: "Construction Consulting", business: "Business Consulting", both: "Construction + Business Consulting", unsure: "To be determined" })[QINDEX.q2.options[a].v];
+}
+function urgencyLabel() {
+  const o = selectedOptions("q12")[0];
+  return o ? o.t.replace(/\.$/, "") : "—";
+}
+
+function summaryHTML() {
+  const rows = [];
+  MODEL.sections.forEach(s => {
+    if (s.showIf) {
+      const side = state.answers.q2 == null ? null : QINDEX.q2.options[state.answers.q2].v;
+      if (side && !s.showIf.includes(side)) return;
+    }
+    s.questions.forEach(q => {
+      if (q.type === "fields") return;
+      let ans = "";
+      if (q.type === "radio" || q.type === "check") {
+        const sel = selectedOptions(q.id);
+        ans = sel.length
+          ? (q.type === "radio" ? esc(sel[0].t) : `<ul>${sel.map(o => `<li>${esc(o.t)}</li>`).join("")}</ul>`)
+          : `<em>No answer</em>`;
+      } else {
+        const v = String(state.answers[q.id] || "").trim();
+        ans = v ? esc(v).replace(/\n/g, "<br>") : `<em>No answer</em>`;
+      }
+      rows.push(`<div class="sum-q"><div class="sq">${q.num} · ${esc(q.title)}</div><div class="sa">${ans}</div></div>`);
+    });
+  });
+  const f = MODEL.sections.find(s => s.id === "about").questions[0].fields;
+  const contact = f.map(x => {
+    const v = String(state.answers[x.id] || "").trim();
+    return v ? `<div class="sum-q"><div class="sq">${esc(x.label)}</div><div class="sa">${esc(v)}</div></div>` : "";
+  }).join("");
+  return contact + rows.join("");
+}
+
+function summaryText(r) {
+  const L = [];
+  L.push("STRINGFELLOW CONSULTING GROUP");
+  L.push("CLIENT FIT & ENGAGEMENT ASSESSMENT");
+  L.push("Submitted: " + new Date().toLocaleString());
+  L.push("");
+  L.push("PRELIMINARY ENGAGEMENT LEVEL: " +
+    (r.outcome === "notfit" ? "FLAGGED — POSSIBLE MISMATCH"
+      : `${MODEL.tiers[r.tier - 1].code} — ${MODEL.tiers[r.tier - 1].name}`));
+  L.push("Track: " + sideLabel());
+  L.push("Timing: " + urgencyLabel());
+  L.push(`Depth index: ${r.val} / 4.00   Symptoms checked: ${r.sym}   Fit flags: ${r.flags.length + r.hard.length}`);
+  if (r.hard.length) L.push("Hard flags: " + r.hard.join(" | "));
+  else if (r.flags.length) L.push("Soft flags: " + r.flags.join(" | "));
+  L.push("");
+  L.push("— CONTACT —");
+  MODEL.sections.find(s => s.id === "about").questions[0].fields.forEach(x => {
+    const v = String(state.answers[x.id] || "").trim();
+    if (v) L.push(x.label + ": " + v);
+  });
+  L.push("");
+  MODEL.sections.forEach(s => {
+    if (s.showIf) {
+      const side = state.answers.q2 == null ? null : QINDEX.q2.options[state.answers.q2].v;
+      if (side && !s.showIf.includes(side)) return;
+    }
+    if (s.id === "about") return;
+    L.push("— " + s.title + " —");
+    s.questions.forEach(q => {
+      let ans;
+      if (q.type === "radio" || q.type === "check") {
+        const sel = selectedOptions(q.id);
+        ans = sel.length ? sel.map(o => o.t).join(sel.length > 1 ? "\n    · " : "") : "(no answer)";
+        if (sel.length > 1) ans = "\n    · " + ans;
+      } else ans = String(state.answers[q.id] || "").trim() || "(no answer)";
+      L.push(`${q.num}. ${q.title}\n    ${ans}`);
+    });
+    L.push("");
+  });
+  return L.join("\n");
+}
+
+function resultHTML(r) {
+  const stamp = `<div class="mono" style="color:#6E6858">${new Date().toLocaleDateString(undefined,{year:"numeric",month:"short",day:"numeric"})}</div>`;
+
+  /* ---------- NOT A FIT ---------- */
+  if (r.outcome === "notfit") {
+    const nf = MODEL.notFit;
+    return `<div class="notfit">
+      <div class="res-band chamfer-tr">
+        <div class="res-kick"><span class="bar"></span><span class="mono" style="color:#6E6858">Preliminary Read</span></div>
+        <div class="tier-code">Assessment Result</div>
+        <h2 class="display tier-name" style="font-size:clamp(26px,5.4vw,46px)">${esc(nf.title)}</h2>
+        <p class="res-close">${esc(nf.lead)}</p>
+        <div class="res-cols">
+          <div>
+            <div class="res-h">Outside how we work</div>
+            <ul class="res-list">${nf.list.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+          </div>
+          <div>
+            <div class="res-h">What you told us</div>
+            <ul class="res-list">${(r.hard.concat(r.flags)).map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+            <div class="flagbox">
+              <div class="fh">Read this before you go</div>
+              <p>${nf.close.map(esc).join(" ")}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      ${actionsHTML()}
+      <div class="summary chamfer-br" id="sumSheet">
+        <div class="sum-h"><span class="mono">Your answers</span>${stamp}</div>
+        ${summaryHTML()}
+      </div>
+    </div>`;
+  }
+
+  /* ---------- TIER ---------- */
+  const t = MODEL.tiers[r.tier - 1];
+  const meter = MODEL.tiers.map(x => `<div class="tm ${x.key <= r.tier ? "on" : ""}"></div>`).join("");
+  const labels = MODEL.tiers.map(x => `<span class="${x.key === r.tier ? "on" : ""}">${x.name.split(" ")[0]}</span>`).join("");
+  const soft = r.flags.length ? `<div class="flagbox">
+        <div class="fh">One thing to square away first</div>
+        <p>You indicated: “${esc(r.flags[0])}” ${r.flags.length > 1 ? `(and ${r.flags.length - 1} similar)` : ""} — that sits a little outside how Stringfellow works. It doesn’t rule anything out, but we’ll want to talk about it before scoping an engagement.</p>
+      </div>` : "";
+
+  return `<div>
+    <div class="res-band chamfer-tr">
+      <div class="res-kick"><span class="bar"></span><span class="mono" style="color:#6E6858">Preliminary Engagement Level</span></div>
+      <div class="tier-code">${esc(t.code)}</div>
+      <h2 class="display tier-name">${esc(t.name)}</h2>
+      <p class="tier-strap">${esc(t.strap)}</p>
+      <div class="tier-meter">${meter}</div>
+      <div class="tm-labels">${labels}</div>
+      <div class="res-cols">
+        <div>
+          <div class="res-h">Best suited for</div>
+          <ul class="res-list">${t.suited.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+        </div>
+        <div>
+          <div class="res-h">Your assessment</div>
+          <ul class="res-list">
+            <li><b>Track:</b> ${esc(sideLabel())}</li>
+            <li><b>Timing:</b> ${esc(urgencyLabel())}</li>
+            <li><b>Depth index:</b> ${r.val} of 4.00</li>
+            <li><b>Symptoms checked:</b> ${r.sym}</li>
+            ${r.notes.length ? `<li><b>Weighted by:</b> ${esc(r.notes.join(", "))}</li>` : ""}
+          </ul>
+          <p class="res-close">${esc(t.close)}</p>
+          <div class="res-anchor">${esc(t.anchor)} · <b>${esc(t.price)}</b></div>
+          ${soft}
+        </div>
+      </div>
+      <hr class="rule" style="background:var(--line);margin:30px 0 22px">
+      <div class="res-h" style="border:0;padding:0;margin-bottom:10px">What happens next</div>
+      ${MODEL.next.lines.map(l => `<p style="margin:0 0 6px;font-size:15px;color:#C9C4B8">${esc(l)}</p>`).join("")}
+      <p style="margin:14px 0 0;font-variation-settings:'wdth' 104,'wght' 700;font-size:15.5px">${esc(MODEL.next.bold[0])}<br>${esc(MODEL.next.bold[1])}</p>
+      <p class="res-anchor" style="margin-top:18px">This is a preliminary read produced from your answers. Stringfellow confirms the engagement level after reviewing your submission.</p>
+    </div>
+    ${actionsHTML()}
+    <div class="summary chamfer-br" id="sumSheet">
+      <div class="sum-h"><span class="mono">Your answers</span>${stamp}</div>
+      ${summaryHTML()}
+    </div>
+  </div>`;
+}
+
+function actionsHTML() {
+  return `<div class="acts no-print">
+    ${SUBMIT_ENDPOINT ? `<button class="btn amber chamfer-btn" type="button" id="aSend">Send to Stringfellow</button>` : ""}
+    <button class="btn chamfer-btn" type="button" id="aMail">Email to Stringfellow</button>
+    <button class="btn ghost chamfer-btn" type="button" id="aPrint">Print / Save as PDF</button>
+    <button class="btn ghost chamfer-btn" type="button" id="aCopy">Copy answers</button>
+    <button class="btn ghost chamfer-btn" type="button" id="aTxt">Download .txt</button>
+    <button class="btn ghost chamfer-btn" type="button" id="aBack">← Change an answer</button>
+  </div>`;
+}
+
+/* ============================================================
+   FINISH
+   ============================================================ */
+function finish() {
+  const r = score();
+  $("#sheet").style.display = "none";
+  $("#rail").style.display = "none";
+  const res = $("#result");
+  res.innerHTML = resultHTML(r);
+  res.classList.add("on");
+  $$("#modelGrid .mc").forEach(c => c.classList.toggle("hit", r.outcome === "tier" && Number(c.dataset.tier) === r.tier));
+  window.scrollTo({ top: 0, behavior: "smooth" });
+
+  const txt = summaryText(r);
+  $("#aPrint").onclick = () => window.print();
+  $("#aBack").onclick = () => {
+    res.classList.remove("on"); res.innerHTML = "";
+    $("#sheet").style.display = ""; $("#rail").style.display = "";
+    $$("#modelGrid .mc").forEach(c => c.classList.remove("hit"));
+    show(state.order[state.idx]);
+  };
+  $("#aCopy").onclick = async e => {
+    try { await navigator.clipboard.writeText(txt); e.target.textContent = "Copied ✓"; }
+    catch { e.target.textContent = "Press Ctrl/Cmd+C"; }
+    setTimeout(() => { e.target.textContent = "Copy answers"; }, 2200);
+  };
+  $("#aTxt").onclick = () => {
+    const who = (state.answers.f_company || state.answers.f_name || "assessment").replace(/[^\w-]+/g, "-");
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([txt], { type: "text/plain" }));
+    a.download = `Stringfellow-Assessment-${who}.txt`;
+    a.click(); URL.revokeObjectURL(a.href);
+  };
+  $("#aMail").onclick = () => {
+    const subj = `Client Fit Assessment — ${state.answers.f_company || state.answers.f_name || "New enquiry"}`;
+    const body = txt.length > 1600 ? txt.slice(0, 1600) + "\n\n…(truncated — full answers attached or available on request)" : txt;
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`;
+  };
+  const send = $("#aSend");
+  if (send) send.onclick = async () => {
+    send.disabled = true; send.textContent = "Sending…";
+    try {
+      const payload = Object.assign({}, state.answers, {
+        _tier: r.outcome === "notfit" ? "NOT A FIT" : MODEL.tiers[r.tier - 1].code + " " + MODEL.tiers[r.tier - 1].name,
+        _depthIndex: r.val, _flags: r.flags.concat(r.hard).join(" | "), _summary: txt
+      });
+      const resp = await fetch(SUBMIT_ENDPOINT, {
+        method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload)
+      });
+      send.textContent = resp.ok ? "Sent ✓" : "Couldn’t send — use email";
+    } catch { send.textContent = "Couldn’t send — use email"; }
+  };
+}
+
+build();
+</script>
+</body>
+</html>
