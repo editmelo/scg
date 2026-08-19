@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Services &amp; Pricing — Stringfellow Construction Group LLC</title>
 <meta name="description" content="Four tiers of construction consulting in Indianapolis: consultation from $227, project planning and owner representation from $997, insurance recovery from $497, and selective construction management from $10,000.">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/site.css">
 </head>
 <body>
 
@@ -17,7 +17,7 @@
 
 <div class="sheet">
   <div class="wrap sheet__inner">
-    <span>Sheet 02 / 05 &nbsp;·&nbsp; Services &amp; Pricing</span>
+    <span>Sheet 02 / 07 &nbsp;·&nbsp; <span class="sheet__track">Construction</span> &nbsp;·&nbsp; Services &amp; Pricing</span>
     <span class="sheet__hide">Indianapolis, IN</span>
   </div>
 </div>
@@ -46,8 +46,27 @@
     <nav class="nav" id="nav" aria-label="Main">
       <ul class="nav__list">
         <li><a class="nav__link" href="/">Home</a></li>
-        <li><a class="nav__link" href="/services" aria-current="page">Services</a></li>
-        <li><a class="nav__link" href="/insurance-recovery">Insurance Recovery</a></li>
+        <li class="nav__has-menu">
+          <button class="nav__link nav__trigger" type="button" aria-expanded="false" aria-controls="svc-menu" data-track="construction">
+            Services <span class="nav__caret" aria-hidden="true"></span>
+          </button>
+          <div class="nav__menu" id="svc-menu">
+            <div class="nav__group">
+              <p class="nav__grouph">Construction</p>
+              <ul>
+                <li><a class="nav__sub" href="/services" aria-current="page">Services &amp; Pricing</a></li>
+                <li><a class="nav__sub" href="/insurance-recovery">Insurance &amp; Recovery</a></li>
+              </ul>
+            </div>
+            <div class="nav__group">
+              <p class="nav__grouph">Business</p>
+              <ul>
+                <li><a class="nav__sub" href="/business">Business Consulting</a></li>
+                <li><a class="nav__sub" href="/business/services">Services &amp; Pricing</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
         <li><a class="nav__link" href="/about">About</a></li>
         <li><a class="nav__link" href="/contact">Contact</a></li>
       </ul>
@@ -269,12 +288,13 @@
         <p class="tierhead__num">03</p>
         <div>
           <p class="label label--amber">Tier 03 &nbsp;·&nbsp; Has its own page</p>
-          <h2 class="d2 tierhead__h">Insurance &amp; Property Recovery Consulting</h2>
+          <h2 class="d2 tierhead__h">Project Recovery &amp; Insurance Claims</h2>
           <p class="lede mt-2">
-            Understand what your property actually needs before repairs begin. We review
-            the carrier's estimate against the building, identify missing scope and
-            unaccounted code requirements, and write down what a complete repair
-            actually involves.
+            For projects that have gone wrong and claims that came back short. We
+            review the carrier's estimate against the building, identify missing scope
+            and unaccounted code requirements, and write down what a complete repair
+            actually involves — and we do the same for a job where the contractor
+            walked, the work is defective, or the budget has run away.
           </p>
         </div>
       </div>
@@ -305,6 +325,9 @@
             <li>Written report</li>
             <li>Construction sequencing</li>
             <li>Budget analysis</li>
+            <li>Defective work assessment</li>
+            <li>Cost overrun analysis</li>
+            <li>Contract and dispute documentation</li>
           </ul>
         </div>
 
@@ -460,6 +483,22 @@
     </div>
   </section>
 
+  <!-- ============ THE OTHER TRACK ============ -->
+  <section class="band band--ink2 band--tight">
+    <div class="wrap">
+      <div class="cols cols--aside">
+        <div>
+          <p class="label label--amber">Also from Stringfellow</p>
+          <h2 class="d3 mt-1">Own a business as well as the building?</h2>
+        </div>
+        <div class="stack">
+          <p class="body-muted">The same four-step approach applies to operations: systems, roles, pricing, scheduling, and the structure a company needs once it has outgrown the way it's been run.</p>
+          <a class="btn btn--ghost" href="/business">Business consulting</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ CTA ============ -->
   <section class="band band--amber">
     <div class="wrap center">
@@ -504,7 +543,7 @@
       </div>
       <div class="tblock__cell">
         <span class="tblock__k">Sheet</span>
-        <span class="tblock__v">02 of 05</span>
+        <span class="tblock__v">02 of 07</span>
       </div>
     </div>
 
@@ -526,6 +565,6 @@
   </div>
 </footer>
 
-<script src="assets/js/site.js" defer></script>
+<script src="/assets/js/site.js" defer></script>
 </body>
 </html>

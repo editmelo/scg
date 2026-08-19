@@ -46,6 +46,49 @@
     });
   }
 
+  /* ---- Services dropdown ----
+     Desktop only. Below 1021px the menu is always expanded as a plain list,
+     so there is nothing to toggle. */
+
+  var trigger = document.querySelector('.nav__trigger');
+  var menu = document.getElementById('svc-menu');
+  var desktop = window.matchMedia('(min-width: 1021px)');
+
+  if (trigger && menu) {
+    var setMenuOpen = function (open) {
+      trigger.setAttribute('aria-expanded', String(open));
+      menu.setAttribute('data-open', String(open));
+    };
+
+    trigger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setMenuOpen(trigger.getAttribute('aria-expanded') !== 'true');
+    });
+
+    // Click anywhere outside closes it.
+    document.addEventListener('click', function (e) {
+      if (!desktop.matches) return;
+      if (!e.target.closest('.nav__has-menu')) setMenuOpen(false);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      if (trigger.getAttribute('aria-expanded') !== 'true') return;
+      setMenuOpen(false);
+      trigger.focus();
+    });
+
+    // Tabbing out of the menu closes it.
+    menu.addEventListener('focusout', function (e) {
+      if (!desktop.matches) return;
+      if (!menu.contains(e.relatedTarget) && e.relatedTarget !== trigger) {
+        setMenuOpen(false);
+      }
+    });
+
+    desktop.addEventListener('change', function () { setMenuOpen(false); });
+  }
+
   /* ---- Header condenses once you leave the top ---- */
 
   var hdr = document.querySelector('.hdr');

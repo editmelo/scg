@@ -7,19 +7,32 @@ Upload the contents of this repository to any host and it works.
 
 ## Files
 
+The site runs two tracks under one brand: **Construction** and **Business**. Same
+identity, same four-tier structure, different vocabulary depending on who arrives.
+
 ```
-index.html               Home
-services.html            All four tiers, priced
-insurance-recovery.html  Tier 3, standalone (highest-intent page)
-about.html               Jesye Franklin  ← has open placeholders, see below
-contact.html             Call, email, service area
-brand.html               Logo concepts + brand sheet (noindex; footer-linked, not in nav)
+index.html               Home — two doors, both ladders          /
+services.html            CONSTRUCTION · four tiers, priced       /services
+insurance-recovery.html  CONSTRUCTION · tier 03 in full          /insurance-recovery
+business/index.html      BUSINESS · landing page                 /business
+business/services.html   BUSINESS · four tiers                   /business/services
+about.html               Jesye Franklin  ← open placeholders     /about
+contact.html             Call, email, service area               /contact
+brand.html               Logo concepts (noindex, footer-linked)  /brand
 favicon.svg
+vercel.json              cleanUrls — see Deploying
 assets/css/site.css      The whole design system, one file
-assets/js/site.js        Mobile menu, header state, scroll reveals
+assets/js/site.js        Mobile menu, services dropdown, header state, scroll reveals
 assets/logo/             Six SCG logo concepts as SVG
-assets/img/              Empty — for Jesye's photo when it arrives
+assets/img/              Urban League logo; Jesye's photo goes here
 ```
+
+Sheets are numbered 01-07 across the set and the strip above the header names the
+track. If pages are added or removed, update both the strip and the matching footer
+title-block cell on **every** page so the numbering stays honest.
+
+**Asset paths are root-relative** (`/assets/...`). They have to be — `/business/services`
+sits one level deep, and relative paths would resolve against `/business/`.
 
 Only external request is Google Fonts (Archivo + JetBrains Mono).
 
@@ -31,7 +44,7 @@ Only external request is Google Fonts (Archivo + JetBrains Mono).
 The old site says `317-677-5243`. The number supplied for this build was
 `317-667-5243`, and that is what's used everywhere — in visible text and in every
 `tel:` link. If the old one is correct, search and replace both `(317) 667-5243`
-and `+13176675243` across all six HTML files.
+and `+13176675243` across all eight HTML files.
 
 **2. Fill in the About page.**
 `about.html` has placeholders styled in amber with dashed underlines so they're
@@ -50,13 +63,25 @@ impossible to miss. Search the file for `[[` to find all of them:
 
 For the photo: drop the file in `assets/img/` and replace the whole
 `<div class="photo-slot">…</div>` block with
-`<img src="assets/img/jesye.jpg" alt="Jesye Franklin" style="aspect-ratio:4/5;object-fit:cover;width:100%">`.
+`<img src="/assets/img/jesye.jpg" alt="Jesye Franklin" style="aspect-ratio:4/5;object-fit:cover;width:100%">`.
 
-**3. Decide on the Membership section.**
+**3. Business pricing for tiers 02-04.**
+Only tier 01 is priced ($227 / $100 per hour). The other three read "Scoped after the
+consultation" because Jesye hasn't set rates for this line. That's a defensible
+position and can stay indefinitely — but if he wants numbers published the way the
+construction side does, they go in `business/services.html`.
+
+**4. Confirm the broadened tier 03 scope.**
+Construction tier 03 was insurance recovery only. It now also covers troubled projects,
+contractor disputes, defective work, and cost overruns. Confirm that matches what he'll
+actually take on. The URL stayed `/insurance-recovery` on purpose — it's the
+high-intent search term and it's already indexed.
+
+**5. Decide on the Membership section.**
 `services.html` shows the $49 / $99 / $199 tiers marked "In development." If Jesye
 would rather not advertise something that isn't open yet, delete that `<section>`.
 
-**4. Confirm publishing real prices.**
+**6. Confirm publishing real prices.**
 Every price from the tier documents is on the site. That was a deliberate
 positioning choice — it's the main thing that separates this from competitors — but
 it is Jesye's call.
@@ -94,19 +119,17 @@ is the closest match to production. A plain `python3 -m http.server` will serve 
 pages but every nav link 404s, because it won't map `/services` to `services.html`.
 Opening the files directly from Finder has the same problem.
 
-**Prices** appear in more than one place. Tier 1's `$227` is in `index.html`
-(hero button, journey, tier row, CTA), `services.html`, and `contact.html`. Search
-across all files when changing a number.
+**Prices** appear in more than one place. `$227` is now the entry point for *both*
+tracks and appears in `index.html`, `services.html`, `business/index.html`,
+`business/services.html`, and `contact.html`. Search across all files when changing a
+number.
 
-**The footer title block** is duplicated on every page. Change contact details in
-all six files. It's the block starting `<div class="tblock">`.
+**The header and footer are duplicated on every page.** There's no templating. The nav
+dropdown, the footer title block, and contact details each appear in all eight files.
+Change one, change them all — `grep` for the string first.
 
 **Colours and type** are all CSS custom properties at the top of `assets/css/site.css`
 under `:root`. Change `--amber` there and it changes everywhere.
-
-**Sheet numbers** — each page has a strip above the header reading "Sheet 01 / 05"
-and a matching cell in the footer title block. If pages get added or removed, those
-numbers need updating so the conceit holds.
 
 ---
 

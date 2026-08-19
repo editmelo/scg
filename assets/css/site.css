@@ -420,6 +420,8 @@ body {
   text-overflow: ellipsis;
 }
 
+.sheet__track { color: var(--amber); }
+
 @media (max-width: 760px) {
   .sheet__hide { display: none; }
 }
@@ -558,6 +560,134 @@ body {
   .nav__cta { margin-top: 1.4rem; width: 100%; justify-content: center; }
 }
 
+/* ---------- 9b. Services dropdown ---------- */
+/* Two labelled columns so the tracks read as peers of each other,
+   not as siblings of a single page. */
+
+.nav__has-menu { position: relative; }
+
+.nav__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: #A6A6AF;
+  padding-block: 6px;
+  transition: color .2s var(--ease);
+}
+.nav__trigger:hover,
+.nav__trigger[aria-expanded='true'] { color: var(--fg); }
+
+.nav__caret {
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform .24s var(--ease);
+}
+.nav__trigger[aria-expanded='true'] .nav__caret { transform: translateY(1px) rotate(-135deg); }
+
+/* Track indicator when you are inside one of the two tracks */
+.nav__trigger[data-track]::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--amber);
+}
+
+.nav__menu {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: -20px;
+  z-index: 95;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(190px, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .55);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity .2s var(--ease), transform .2s var(--ease), visibility .2s;
+}
+
+.nav__menu[data-open='true'] { opacity: 1; visibility: visible; transform: none; }
+
+/* Hover is a desktop enhancement only, layered over the click behaviour */
+@media (hover: hover) and (min-width: 1021px) {
+  .nav__has-menu:hover .nav__menu,
+  .nav__has-menu:focus-within .nav__menu {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+}
+
+.nav__group { background: var(--ink); padding: 1.15rem 1.3rem 1.3rem; }
+
+.nav__grouph {
+  font-family: var(--mono);
+  font-size: .58rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: .9rem;
+}
+
+.nav__sub {
+  display: block;
+  padding: .5rem 0;
+  font-family: var(--body);
+  font-size: .92rem;
+  font-variation-settings: 'wdth' 100, 'wght' 500;
+  text-decoration: none;
+  color: #C8C8D0;
+  white-space: nowrap;
+  transition: color .18s var(--ease), transform .18s var(--ease);
+}
+.nav__sub:hover { color: var(--amber); transform: translateX(3px); }
+.nav__sub[aria-current='page'] { color: var(--fg); }
+.nav__sub[aria-current='page']::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: .5rem;
+  background: var(--amber);
+  vertical-align: middle;
+}
+
+@media (max-width: 1020px) {
+  .nav__has-menu { position: static; }
+  .nav__trigger { display: none; }
+  .nav__menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    display: block;
+    border: 0;
+    box-shadow: none;
+    background: transparent;
+  }
+  .nav__group { padding: 1.1rem 0 .4rem; background: transparent; }
+  .nav__group + .nav__group { border-top: 1px solid var(--line); }
+  .nav__sub { padding: .78rem 0; font-size: .95rem; }
+  .nav__trigger[data-track]::after { display: none; }
+}
+
 /* ---------- 10. Hero ---------- */
 
 .hero {
@@ -667,6 +797,121 @@ body {
   font-variant-numeric: tabular-nums;
   color: var(--fg);
 }
+
+/* ---------- 10b. Two doors ---------- */
+/* The home hero's fork. Construction or Business, chosen before anything else. */
+
+.doors {
+  display: grid;
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+  margin-top: clamp(36px, 5vw, 64px);
+}
+
+@media (min-width: 820px) { .doors { grid-template-columns: 1fr 1fr; } }
+
+.door {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+  background: var(--surface);
+  padding: clamp(26px, 3.2vw, 44px);
+  min-height: 250px;
+  text-decoration: none;
+  transition: background .24s var(--ease);
+}
+
+.door:hover { background: var(--surface-2); }
+
+.door::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--amber);
+  transition: width .42s var(--ease);
+}
+.door:hover::before,
+.door:focus-visible::before { width: 100%; }
+
+.door__t { margin-top: .2rem; }
+
+.door__d { color: var(--fg-muted); font-size: .95rem; line-height: 1.5; }
+
+.door__who {
+  font-family: var(--mono);
+  font-size: .66rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.door__go {
+  margin-top: auto;
+  padding-top: 1.2rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.door__from { color: var(--fg); font-variant-numeric: tabular-nums; }
+
+/* ---------- 10c. Paired ladders ---------- */
+/* Both tracks side by side so the shared four-tier logic is visible at a glance. */
+
+.ladders { display: grid; gap: clamp(36px, 4.5vw, 64px); }
+
+@media (min-width: 940px) { .ladders { grid-template-columns: 1fr 1fr; } }
+
+.ladder__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--amber);
+}
+
+.rung {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  gap: .3rem 1rem;
+  padding-block: 1.05rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.rung__n {
+  grid-row: span 2;
+  font-family: var(--mono);
+  font-size: .92rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--amber);
+  padding-top: .1rem;
+}
+
+.rung__t {
+  font-family: var(--display);
+  font-variation-settings: 'wdth' 106, 'wght' 700;
+  font-size: 1.02rem;
+  text-transform: uppercase;
+  letter-spacing: -.005em;
+  line-height: 1.1;
+}
+
+.rung__d { font-size: .89rem; color: var(--fg-muted); line-height: 1.45; }
 
 /* ---------- 11. Question grid ---------- */
 

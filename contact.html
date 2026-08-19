@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contact — Stringfellow Construction Group LLC | Indianapolis</title>
 <meta name="description" content="Call (317) 667-5243 or email frjesye1@gmail.com to book a construction consultation in Indianapolis. Consultations are $227 for up to two hours, by phone, Zoom, or on site.">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/site.css">
 </head>
 <body>
 
@@ -17,7 +17,7 @@
 
 <div class="sheet">
   <div class="wrap sheet__inner">
-    <span>Sheet 05 / 05 &nbsp;·&nbsp; Contact</span>
+    <span>Sheet 07 / 07 &nbsp;·&nbsp; Contact</span>
     <span class="sheet__hide">Indianapolis, IN</span>
   </div>
 </div>
@@ -46,8 +46,27 @@
     <nav class="nav" id="nav" aria-label="Main">
       <ul class="nav__list">
         <li><a class="nav__link" href="/">Home</a></li>
-        <li><a class="nav__link" href="/services">Services</a></li>
-        <li><a class="nav__link" href="/insurance-recovery">Insurance Recovery</a></li>
+        <li class="nav__has-menu">
+          <button class="nav__link nav__trigger" type="button" aria-expanded="false" aria-controls="svc-menu">
+            Services <span class="nav__caret" aria-hidden="true"></span>
+          </button>
+          <div class="nav__menu" id="svc-menu">
+            <div class="nav__group">
+              <p class="nav__grouph">Construction</p>
+              <ul>
+                <li><a class="nav__sub" href="/services">Services &amp; Pricing</a></li>
+                <li><a class="nav__sub" href="/insurance-recovery">Insurance &amp; Recovery</a></li>
+              </ul>
+            </div>
+            <div class="nav__group">
+              <p class="nav__grouph">Business</p>
+              <ul>
+                <li><a class="nav__sub" href="/business">Business Consulting</a></li>
+                <li><a class="nav__sub" href="/business/services">Services &amp; Pricing</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
         <li><a class="nav__link" href="/about">About</a></li>
         <li><a class="nav__link" href="/contact" aria-current="page">Contact</a></li>
       </ul>
@@ -65,8 +84,8 @@
       <h1 class="d1 phead__h1">Call. That's the whole process.</h1>
       <p class="lede phead__lede">
         No intake form, no scheduling assistant, no discovery call about a discovery call.
-        Describe the situation in two sentences and you'll know within a few minutes
-        whether a consultation makes sense.
+        Describe the situation in two sentences — a building or a business, either one —
+        and you'll know within a few minutes whether a consultation makes sense.
       </p>
     </div>
   </section>
@@ -110,9 +129,9 @@
         </div>
         <div>
           <ul class="list-rule">
-            <li><span class="list-rule__k">What the property is</span><span class="list-rule__v">House, rental, church, business</span></li>
-            <li><span class="list-rule__k">What you're facing</span><span class="list-rule__v">Remodel, purchase, claim, dispute</span></li>
-            <li><span class="list-rule__k">Roughly what it's worth</span><span class="list-rule__v">A range is fine</span></li>
+            <li><span class="list-rule__k">Which side it is</span><span class="list-rule__v">A building, or a business</span></li>
+            <li><span class="list-rule__k">What you're facing</span><span class="list-rule__v">Remodel, claim, dispute, systems, growth</span></li>
+            <li><span class="list-rule__k">Roughly the scale</span><span class="list-rule__v">A range is fine</span></li>
             <li><span class="list-rule__k">Where you are in it</span><span class="list-rule__v">Thinking, bidding, or underway</span></li>
             <li><span class="list-rule__k">Your timeline</span><span class="list-rule__v">Weeks, months, urgent</span></li>
           </ul>
@@ -121,7 +140,14 @@
             <span class="label label--amber callout__label">If it's an insurance claim</span>
             Have the carrier's estimate or scope sheet handy, plus the date of loss.
             Those two things answer most of the first round of questions.
-            <p class="mt-1"><a class="tlink" href="/insurance-recovery">Insurance recovery details <span aria-hidden="true">→</span></a></p>
+            <p class="mt-1"><a class="tlink" href="/insurance-recovery">Project recovery details <span aria-hidden="true">→</span></a></p>
+          </div>
+
+          <div class="callout mt-3">
+            <span class="label label--amber callout__label">If it's a business problem</span>
+            Say what's breaking and roughly how many people it touches. Headcount,
+            revenue range, and who currently makes the decisions get us most of the way.
+            <p class="mt-1"><a class="tlink" href="/business">Business consulting details <span aria-hidden="true">→</span></a></p>
           </div>
         </div>
       </div>
@@ -221,7 +247,7 @@
       </div>
       <div class="tblock__cell">
         <span class="tblock__k">Sheet</span>
-        <span class="tblock__v">05 of 05</span>
+        <span class="tblock__v">07 of 07</span>
       </div>
     </div>
 
@@ -243,6 +269,6 @@
   </div>
 </footer>
 
-<script src="assets/js/site.js" defer></script>
+<script src="/assets/js/site.js" defer></script>
 </body>
 </html>

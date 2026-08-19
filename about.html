@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>About Jesye Franklin — Stringfellow Construction Group LLC</title>
 <meta name="description" content="Jesye Franklin founded Stringfellow Construction Group in Indianapolis. After years in the trades, the practice now sells expertise rather than labor: consulting, planning, and insurance recovery for property owners.">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/site.css">
 </head>
 <body>
 
@@ -17,7 +17,7 @@
 
 <div class="sheet">
   <div class="wrap sheet__inner">
-    <span>Sheet 04 / 05 &nbsp;·&nbsp; About</span>
+    <span>Sheet 06 / 07 &nbsp;·&nbsp; About</span>
     <span class="sheet__hide">Indianapolis, IN</span>
   </div>
 </div>
@@ -46,8 +46,27 @@
     <nav class="nav" id="nav" aria-label="Main">
       <ul class="nav__list">
         <li><a class="nav__link" href="/">Home</a></li>
-        <li><a class="nav__link" href="/services">Services</a></li>
-        <li><a class="nav__link" href="/insurance-recovery">Insurance Recovery</a></li>
+        <li class="nav__has-menu">
+          <button class="nav__link nav__trigger" type="button" aria-expanded="false" aria-controls="svc-menu">
+            Services <span class="nav__caret" aria-hidden="true"></span>
+          </button>
+          <div class="nav__menu" id="svc-menu">
+            <div class="nav__group">
+              <p class="nav__grouph">Construction</p>
+              <ul>
+                <li><a class="nav__sub" href="/services">Services &amp; Pricing</a></li>
+                <li><a class="nav__sub" href="/insurance-recovery">Insurance &amp; Recovery</a></li>
+              </ul>
+            </div>
+            <div class="nav__group">
+              <p class="nav__grouph">Business</p>
+              <ul>
+                <li><a class="nav__sub" href="/business">Business Consulting</a></li>
+                <li><a class="nav__sub" href="/business/services">Services &amp; Pricing</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
         <li><a class="nav__link" href="/about" aria-current="page">About</a></li>
         <li><a class="nav__link" href="/contact">Contact</a></li>
       </ul>
@@ -64,9 +83,10 @@
       <p class="label label--amber">About &nbsp;·&nbsp; Owner</p>
       <h1 class="d1 phead__h1">Jesye Franklin</h1>
       <p class="lede phead__lede">
-        Stringfellow Construction Group spent years doing the work. It now spends most of
-        its time telling people what the work should cost, what it should include, and
-        whether they should be doing it at all.
+        Stringfellow Construction Group spent years doing the work. It now spends most
+        of its time telling people what the work should cost, what it should include,
+        and whether they should be doing it at all — on a building, and increasingly on
+        the business behind it.
       </p>
     </div>
   </section>
@@ -140,6 +160,13 @@
           documentation, and risk reduction. It turns out that's the part people actually
           needed all along. It just wasn't for sale.
         </p>
+        <p>
+          The same pattern showed up off the job site. Owners of small companies were
+          hitting the identical problem from a different direction: growing past the
+          systems that got them there, and holding the whole operation together
+          personally because nothing had been written down. That work now runs as its
+          own track — <a class="tlink" href="/business">business consulting <span aria-hidden="true">→</span></a>
+        </p>
         <p class="lede">
           <span class="todo">[[WHY — Jesye's own version of this in one or two
           paragraphs. What specifically pushed him to make the change?]]</span>
@@ -207,7 +234,7 @@
   <section class="band band--bone band--tight">
     <div class="wrap">
       <div class="partner reveal">
-        <img class="partner__mark" src="assets/img/urban-league-logo.png"
+        <img class="partner__mark" src="/assets/img/urban-league-logo.png"
              alt="Indianapolis Urban League" width="250" height="88" loading="lazy">
         <div class="partner__body">
           <p class="label label--amber">Proud supporting partner</p>
@@ -265,7 +292,7 @@
       </div>
       <div class="tblock__cell">
         <span class="tblock__k">Sheet</span>
-        <span class="tblock__v">04 of 05</span>
+        <span class="tblock__v">06 of 07</span>
       </div>
     </div>
 
@@ -287,6 +314,6 @@
   </div>
 </footer>
 
-<script src="assets/js/site.js" defer></script>
+<script src="/assets/js/site.js" defer></script>
 </body>
 </html>

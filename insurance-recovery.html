@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insurance &amp; Property Recovery Consulting — Indianapolis | Stringfellow Construction Group</title>
-<meta name="description" content="Insurance claim review and property recovery consulting in Indianapolis. We identify missing scope, code requirements, and undocumented damage before repairs begin. Claim review from $497. Not public adjusting.">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>Insurance Claims &amp; Project Recovery — Indianapolis | Stringfellow Construction Group</title>
+<meta name="description" content="Insurance claim review and project recovery consulting in Indianapolis. Missing scope, code requirements, undocumented damage, troubled projects, contractor disputes and cost overruns. Claim review from $497. Not public adjusting.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/site.css">
 </head>
 <body>
 
@@ -17,7 +17,7 @@
 
 <div class="sheet">
   <div class="wrap sheet__inner">
-    <span>Sheet 03 / 05 &nbsp;·&nbsp; Insurance &amp; Property Recovery</span>
+    <span>Sheet 03 / 07 &nbsp;·&nbsp; <span class="sheet__track">Construction</span> &nbsp;·&nbsp; Project Recovery</span>
     <span class="sheet__hide">Indianapolis, IN</span>
   </div>
 </div>
@@ -46,8 +46,27 @@
     <nav class="nav" id="nav" aria-label="Main">
       <ul class="nav__list">
         <li><a class="nav__link" href="/">Home</a></li>
-        <li><a class="nav__link" href="/services">Services</a></li>
-        <li><a class="nav__link" href="/insurance-recovery" aria-current="page">Insurance Recovery</a></li>
+        <li class="nav__has-menu">
+          <button class="nav__link nav__trigger" type="button" aria-expanded="false" aria-controls="svc-menu" data-track="construction">
+            Services <span class="nav__caret" aria-hidden="true"></span>
+          </button>
+          <div class="nav__menu" id="svc-menu">
+            <div class="nav__group">
+              <p class="nav__grouph">Construction</p>
+              <ul>
+                <li><a class="nav__sub" href="/services">Services &amp; Pricing</a></li>
+                <li><a class="nav__sub" href="/insurance-recovery" aria-current="page">Insurance &amp; Recovery</a></li>
+              </ul>
+            </div>
+            <div class="nav__group">
+              <p class="nav__grouph">Business</p>
+              <ul>
+                <li><a class="nav__sub" href="/business">Business Consulting</a></li>
+                <li><a class="nav__sub" href="/business/services">Services &amp; Pricing</a></li>
+              </ul>
+            </div>
+          </div>
+        </li>
         <li><a class="nav__link" href="/about">About</a></li>
         <li><a class="nav__link" href="/contact">Contact</a></li>
       </ul>
@@ -61,12 +80,14 @@
   <!-- ============ PAGE HEAD ============ -->
   <section class="phead gridded">
     <div class="wrap">
-      <p class="label label--amber">Tier 03 &nbsp;·&nbsp; Insurance &amp; Property Recovery Consulting</p>
+      <p class="label label--amber">Construction &nbsp;·&nbsp; Tier 03 &nbsp;·&nbsp; Recover</p>
       <h1 class="d1 phead__h1">Don't leave thousands of dollars on the table.</h1>
       <p class="lede phead__lede">
         After a fire, a flood, a storm, or a vehicle through the front of the building,
         the estimate you receive is a starting position — not a final answer. We tell you
         what the building actually needs, in writing, before anyone starts repairs.
+        The same applies to a job that has gone wrong: a contractor who walked, work
+        that won't pass inspection, or a budget that has run away from you.
       </p>
       <div class="btn-row mt-3">
         <a class="btn btn--primary" href="tel:+13176675243">Start with a claim review — $497</a>
@@ -241,7 +262,7 @@
       <div class="cols cols--aside">
         <div>
           <p class="label label--amber">Who calls us</p>
-          <h2 class="d2 mt-1">Property owners, not just homeowners.</h2>
+          <h2 class="d2 mt-1">Damaged buildings and troubled jobs.</h2>
         </div>
         <div class="stack">
           <p class="lede">
@@ -265,6 +286,21 @@
             <span class="tag tag--amber">Structural failure</span>
             <span class="tag tag--amber">Disputed claims</span>
           </div>
+
+          <p class="label mt-3">Projects that have gone wrong</p>
+          <div class="tags mt-1">
+            <span class="tag">Contractor walked off</span>
+            <span class="tag">Defective work</span>
+            <span class="tag">Failed inspections</span>
+            <span class="tag">Stalled projects</span>
+            <span class="tag">Cost overruns</span>
+            <span class="tag">Contractor disputes</span>
+          </div>
+          <p class="body-muted mt-2">
+            Recovery isn't only about insurance. If a job has stopped, gone over, or
+            been built wrong, the first step is the same: an independent read of what
+            was supposed to happen, what actually happened, and what it takes to finish.
+          </p>
         </div>
       </div>
     </div>
@@ -340,7 +376,7 @@
       </div>
       <div class="tblock__cell">
         <span class="tblock__k">Sheet</span>
-        <span class="tblock__v">03 of 05</span>
+        <span class="tblock__v">03 of 07</span>
       </div>
     </div>
 
@@ -362,6 +398,6 @@
   </div>
 </footer>
 
-<script src="assets/js/site.js" defer></script>
+<script src="/assets/js/site.js" defer></script>
 </body>
 </html>
