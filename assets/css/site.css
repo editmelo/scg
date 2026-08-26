@@ -1169,20 +1169,29 @@ body {
   display: inline-block;
   font-family: var(--display);
   font-variation-settings: 'wdth' 112, 'wght' 750;
-  font-size: clamp(2rem, 5.6vw, 3.9rem);
+  /* Sized against the card, not the viewport. A viewport-relative size asks for
+     ~62px inside a ~280px column at desktop, which is what forced the phone
+     number to break mid-digit. cqi resolves against .spec, which .cols makes a
+     size container. */
+  font-size: clamp(1.35rem, 8.5cqi, 2.6rem);
   line-height: 1;
   letter-spacing: -.02em;
   font-variant-numeric: tabular-nums;
   text-decoration: none;
   transition: color .22s var(--ease);
-  word-break: break-word;
+  /* A phone number never breaks. Not between the digits, not at the hyphen. */
+  white-space: nowrap;
+  word-break: normal;
 }
 .bignum:hover { color: var(--amber); }
 
+/* Addresses and page names are allowed to wrap — they have to. */
 .bigmail {
   font-size: clamp(1.05rem, 2.4vw, 1.7rem);
   font-variation-settings: 'wdth' 104, 'wght' 600;
   text-transform: none;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 /* ---------- 15. Steps ---------- */
