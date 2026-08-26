@@ -1173,7 +1173,7 @@ body {
      ~62px inside a ~280px column at desktop, which is what forced the phone
      number to break mid-digit. cqi resolves against .spec, which .cols makes a
      size container. */
-  font-size: clamp(1.35rem, 8.5cqi, 2.6rem);
+  font-size: clamp(1.35rem, 10cqi, 28pt);
   line-height: 1;
   letter-spacing: -.02em;
   font-variant-numeric: tabular-nums;
@@ -1192,6 +1192,17 @@ body {
   text-transform: none;
   white-space: normal;
   overflow-wrap: anywhere;
+}
+
+/* ---------- 14c. Contact cards ---------- */
+/* Phone takes the full row so the number has room to sit on one line at 28pt.
+   A third-width card gives ~279px of inside width; the number needs ~297px. */
+
+.contact-cards { display: grid; gap: clamp(28px, 4vw, 64px); }
+
+@media (min-width: 700px) {
+  .contact-cards { grid-template-columns: 1fr 1fr; }
+  .contact-cards__lead { grid-column: 1 / -1; }
 }
 
 /* ---------- 15. Steps ---------- */
