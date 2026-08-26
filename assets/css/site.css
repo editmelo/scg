@@ -1332,10 +1332,15 @@ a.tblock__v:hover { color: var(--amber); }
 /* ---------- 17b. Urban League partner strip ---------- */
 /* Sits on the bone surface — the mark is dark artwork and would vanish on ink. */
 
+/* Centred as a group rather than stretched across the band — the strip is a
+   credit, not a content section, and it reads as an aside when it sits inside
+   the measure rather than spanning it. */
 .partner {
   display: grid;
   gap: clamp(20px, 3vw, 40px);
   align-items: center;
+  max-width: 940px;
+  margin-inline: auto;
 }
 
 @media (min-width: 800px) {
@@ -1350,6 +1355,12 @@ a.tblock__v:hover { color: var(--amber); }
   width: 250px;
   max-width: 100%;
   height: auto;
+  /* Stacked below 800px, so the mark centres over the text it credits */
+  margin-inline: auto;
+}
+
+@media (min-width: 800px) {
+  .partner__mark { margin-inline: 0; }
 }
 
 .partner__txt {
