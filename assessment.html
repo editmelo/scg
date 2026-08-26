@@ -429,7 +429,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding-top:28px;}
       </svg>
       <span class="logo-txt">
         <span class="logo-name">Stringfellow</span>
-        <span class="logo-sub">Construction Consulting · Business Consulting</span>
+        <span class="logo-sub">Construction Consulting · Business Operations</span>
       </span>
     </a>
     <div class="mast-meta">
@@ -524,7 +524,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding-top:28px;}
       </div>
       <div class="foot-meta">
         <div class="mono" style="margin-bottom:6px">Stringfellow Construction Group LLC</div>
-        <div>Construction Consulting · Business Consulting</div>
+        <div>Construction Consulting · Business Operations</div>
         <div><a href="tel:+13176675243">(317) 667-5243</a> · <a href="/">scg.revieweditmelo.com</a></div>
       </div>
     </div>
@@ -548,7 +548,7 @@ const MODEL = {
   brand: {
     name: "STRINGFELLOW",
     legal: "Stringfellow Construction Group LLC",
-    sub: "Construction Consulting · Business Consulting",
+    sub: "Construction Consulting · Business Operations",
     phone: "(317) 667-5243",
     site: "scg.revieweditmelo.com",
     tagline: "Hire the expertise before you hire the contractor.",
@@ -593,7 +593,7 @@ const MODEL = {
           sub: "This determines which sections you’ll see next.",
           options: [
             { t: "Construction Consulting", v: "construction" },
-            { t: "Business Consulting", v: "business" },
+            { t: "Business Operations", v: "business" },
             { t: "Both", v: "both" },
             { t: "I’m not sure.", v: "unsure" }
           ]
@@ -628,7 +628,7 @@ const MODEL = {
     {
       id: "business",
       num: "02",
-      title: "BUSINESS CONSULTING",
+      title: "BUSINESS OPERATIONS",
       blurb: "Symptoms we see most often on the business side.",
       showIf: ["business", "both", "unsure"],
       questions: [
@@ -1352,7 +1352,7 @@ function score() {
 function sideLabel() {
   const a = state.answers.q2;
   if (a == null) return "—";
-  return ({ construction: "Construction Consulting", business: "Business Consulting", both: "Construction + Business Consulting", unsure: "To be determined" })[QINDEX.q2.options[a].v];
+  return ({ construction: "Construction Consulting", business: "Business Operations", both: "Construction + Business Operations", unsure: "To be determined" })[QINDEX.q2.options[a].v];
 }
 function urgencyLabel() {
   const o = selectedOptions("q12")[0];
